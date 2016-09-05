@@ -1,16 +1,21 @@
-Task based alarm
+# Task based alarm
 ================
 
-Team
-----
+## Team
+
 * Sam
 * Luke
 * Prashant
 * Rich
 
-User stories
-------------
-MVP 1
+## App Description
+
+An alarm clock for people who find it hard to wake up in the morning. To stop the alarm, the user must complete a task, answer a question or complete a mini game
+
+
+## User stories
+
+### MVP 1
 ```
 As a very sleepy User
 So that I can wake up on time
@@ -41,7 +46,7 @@ So that I can see how much sleep I have left
 I would like to view the alarm
 ```
 
-MVP 2
+### MVP 2
 ```
 As a very sleepy User
 So that I can sleep for longer
