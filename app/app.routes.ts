@@ -1,10 +1,10 @@
 import {RouterConfig} from "@angular/router";
 import {nsProvideRouter} from "nativescript-angular/router"
-import {AlarmPage} from "./pages/alarm/alarm.component";
+import {SetAlarmPage} from "./pages/setAlarm/setAlarm.component";
 import {ListPage} from "./pages/list/list.component";
 
 export const routes: RouterConfig = [
-  { path: "", component: AlarmPage },
+  { path: "", component: SetAlarmPage },
   { path: "list", component: ListPage }
 ];
 
