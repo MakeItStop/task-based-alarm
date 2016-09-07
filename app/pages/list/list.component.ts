@@ -9,6 +9,7 @@ import * as moment from "moment";
 })
 export class ListPage {
 
-    alarmTime = applicationSettings.getNumber("hour") + ":" + applicationSettings.getNumber("minute");
+    private timeString = applicationSettings.getNumber("hour") + ":" + applicationSettings.getNumber("minute");
+    alarmTime = moment(this.timeString, "HH:mm").format("HH:mm");
 
 }
