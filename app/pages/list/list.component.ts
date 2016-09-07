@@ -1,8 +1,14 @@
-import {Component} from "@angular/core";
+import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
+import * as applicationSettings from "application-settings";
+import { Page } from 'ui/page';
+import * as moment from "moment";
 
 @Component({
   selector: "list",
-  templateUrl: "pages/list/list.html",
-  styleUrls: ["pages/list/list-common.css", "pages/list/list.css"]
+  templateUrl: "pages/list/list.component.html",
 })
-export class ListPage {}
+export class ListPage {
+
+    alarmTime = applicationSettings.getNumber("hour") + ":" + applicationSettings.getNumber("minute");
+
+}
