@@ -1,5 +1,6 @@
 .vscode/
 app/**/*.js
+!app/tests/*.js
 hooks/
 lib/
 node_modules/
