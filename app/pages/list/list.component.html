@@ -3,5 +3,6 @@
 
     <Label [text]="alarmTime" class="alarm-time title" textWrap="true"></Label>
     <Label [text]="_now" class="alarm-time title" textWrap="true"></Label>
-    <Label [text]="_until" class="alarm-time title" textWrap="true"></Label>
+
+    <Button text="See Alarm" (tap)="seeAlarm()"></Button>
 </StackLayout>
