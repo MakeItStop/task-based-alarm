@@ -11,6 +11,7 @@ let timer = require('timer');
 export class AlarmPage implements OnInit {
   public counter: number = 16;
   private taskPassed = false;
+  private alarmLooper = {};
   private sounds: any = {
     "Foghorn": sound.create("~/sounds/Foghorn.mp3"),
     "Alarm": sound.create("~/sounds/Alarm_Clock.mp3"),
@@ -42,7 +43,7 @@ export class AlarmPage implements OnInit {
 
 
     this.sounds["Warning"].play();
-    timer.setInterval(() => {
+    this.alarmLooper = timer.setInterval(() => {
       this.sounds["Warning"].play();
     }, 10000);
   }
@@ -57,6 +58,7 @@ export class AlarmPage implements OnInit {
       this.counter--;
     } else {
       this.sounds["Warning"].stop();
+      timer.clearInterval(this.alarmLooper);
       this._router.navigate([""]);
     }
   }
