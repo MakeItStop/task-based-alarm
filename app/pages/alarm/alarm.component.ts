@@ -32,6 +32,7 @@ export class AlarmPage implements OnInit {
 
   public playAlarm() {
     this.sounds["Warning"].play();
+    timer.setTimeout(this.playAlarm, 10000)
   }
 
   ngOnInit() {
