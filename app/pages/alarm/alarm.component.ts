@@ -42,7 +42,7 @@ export class AlarmPage implements OnInit {
       this.counter--;
     } else {
       this.sounds["Warning"].stop();
-      this._router.navigate(["list"]);
+      this._router.navigate([""]);
     }
   }
 
