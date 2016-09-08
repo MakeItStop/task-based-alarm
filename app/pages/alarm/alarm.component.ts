@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import { Router } from "@angular/router";
 import { Page } from "ui/page";
 let sound = require("nativescript-sound");
+let timer = require('timer');
 
 @Component({
     selector: "alarm",

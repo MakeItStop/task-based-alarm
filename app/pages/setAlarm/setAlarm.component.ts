@@ -12,7 +12,7 @@ import * as moment from "moment";
 export class SetAlarmPage {
 
   constructor(private _router: Router) {}
-  private _today = 0;
+  private _plusDays = 0;
 
   configureTime(timePicker: TimePicker) {
     timePicker.hour = applicationSettings.getNumber("hour", 9);
@@ -23,11 +23,14 @@ export class SetAlarmPage {
   saveTime(timePicker: TimePicker) {
     applicationSettings.setNumber("hour", timePicker.hour);
     applicationSettings.setNumber("minute", timePicker.minute);
-    if (moment().hour() > timePicker.hour && moment().minute() > timePicker.minute) {
-      this._today = 1;
+    let selectedTime = moment(timePicker.hour + ':' + timePicker.minute, "HH:mm")
+    if (selectedTime < moment()) {
+      this._plusDays = 1;
+    } else {
+      this._plusDays = 0;
     }
 
-    applicationSettings.setNumber("today", this._today);
+    applicationSettings.setNumber("today", this._plusDays);
 
     this._router.navigate(["list"]);
   }
