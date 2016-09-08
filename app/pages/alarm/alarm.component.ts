@@ -31,12 +31,25 @@ export class AlarmPage implements OnInit {
   }
 
   public playAlarm() {
+    // SOLUTION 1: DOES NOT WORK
+    // while (!this.taskPassed) {
+    //   this.sounds["Warning"].play();
+    // }
+    // SOLUTION 2: ALSO DOES NOT WORK
+    // this.sounds["Warning"].play();
+    // timer.setTimeout(this.playAlarm, 10000)
+    // SOLUTION 3: ???
+
+
     this.sounds["Warning"].play();
-    timer.setTimeout(this.playAlarm, 10000)
+    timer.setInterval(() => {
+      this.sounds["Warning"].play();
+    }, 10000);
   }
 
   ngOnInit() {
     this.playAlarm();
+
   }
 
   onTap() {

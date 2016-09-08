@@ -23,10 +23,10 @@ export class SetAlarmPage {
   saveTime(timePicker: TimePicker) {
     applicationSettings.setNumber("hour", timePicker.hour);
     applicationSettings.setNumber("minute", timePicker.minute);
-    console.log(moment().hour());
-    console.log(moment().minute());
-    console.log(timePicker.hour);
-    console.log(timePicker.minute);
+    // console.log(moment().hour());
+    // console.log(moment().minute());
+    // console.log(timePicker.hour);
+    // console.log(timePicker.minute);
     let selectedTime = moment(timePicker.hour + ':' + timePicker.minute, "HH:mm")
     if (selectedTime < moment()) {
       this._plusDays = 1;
