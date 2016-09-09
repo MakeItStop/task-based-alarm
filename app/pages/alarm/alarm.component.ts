@@ -32,20 +32,17 @@ export class AlarmPage implements OnInit {
   }
 
   public playAlarm() {
-    // SOLUTION 1: DOES NOT WORK
-    // while (!this.taskPassed) {
-    //   this.sounds["Warning"].play();
-    // }
-    // SOLUTION 2: ALSO DOES NOT WORK
-    // this.sounds["Warning"].play();
-    // timer.setTimeout(this.playAlarm, 10000)
-    // SOLUTION 3: ???
-
-
-    this.sounds["Warning"].play();
+    // let alarmArray = Object.keys(this.sounds)
+    // let randomAlarm = alarmArray[Math.floor(Math.random() * alarmArray.length)]
+    this.sounds["Railroad"].play();
     this.alarmLooper = timer.setInterval(() => {
-      this.sounds["Warning"].play();
+      this.sounds["Railroad"].play();
     }, 10000);
+  }
+
+  private _stopAlarm() {
+    this.sounds["Railroad"].stop();
+    timer.clearInterval(this.alarmLooper);
   }
 
   ngOnInit() {
@@ -57,8 +54,7 @@ export class AlarmPage implements OnInit {
     if (!this.taskPassed) {
       this.counter--;
     } else {
-      this.sounds["Warning"].stop();
-      timer.clearInterval(this.alarmLooper);
+      this._stopAlarm();
       this._router.navigate([""]);
     }
   }
