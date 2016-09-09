@@ -22,12 +22,6 @@ export class ListPage implements OnInit {
   public formattedAlarmTime = moment(this._timeString, "HH:mm").format("HH:mm");
 
   ngOnInit() {
-    // alert("milliseconds until your alarm: " + moment(this._until))
-    // console.log("now time: " + this._now);
-    // console.log("alarm time: " + this._alarmTime);
-    // console.log("until time: " + this._until);
-    // console.log("today?: " + this._plusDays);
-    // alert("your alarm time is " + moment(this._until).format("HH:mm"))
     if (global.alarmTimer) {
       timer.clearTimeout(global.alarmTimer);
     }
