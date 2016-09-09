@@ -1,0 +1,7 @@
+<StackLayout>
+    <Label text="Alarm" class="title"></Label>
+
+    <Label [text]="formattedAlarmTime" class="alarm-time title" textWrap="true"></Label>
+
+    <Button text="See Alarm" (tap)="seeAlarm()"></Button>
+</StackLayout>
