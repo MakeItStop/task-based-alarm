@@ -19,17 +19,13 @@ export class ListPage implements OnInit {
   private _alarmTime = moment(this._timeString, "HH:mm").add(this._plusDays, 'd')
   private _until = this._alarmTime.diff(this._now);
 
-
   public formattedAlarmTime = moment(this._timeString, "HH:mm").format("HH:mm");
 
   ngOnInit() {
-    // alert("milliseconds until your alarm: " + moment(this._until))
-    // console.log("now time: " + this._now);
-    // console.log("alarm time: " + this._alarmTime);
-    // console.log("until time: " + this._until);
-    // console.log("today?: " + this._plusDays);
-    // alert("your alarm time is " + moment(this._until).format("HH:mm"))
-    timer.setTimeout(() => {
+    if (global.alarmTimer) {
+      timer.clearTimeout(global.alarmTimer);
+    }
+    global.alarmTimer = timer.setTimeout(() => {
       this._router.navigate(["alarm"]);
     }, this._until)
   }

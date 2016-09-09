@@ -47,7 +47,6 @@ export class AlarmPage implements OnInit {
 
   ngOnInit() {
     this.playAlarm();
-
   }
 
   onTap() {
