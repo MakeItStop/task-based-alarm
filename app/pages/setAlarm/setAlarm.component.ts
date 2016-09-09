@@ -5,7 +5,7 @@ import * as applicationSettings from "application-settings";
 import { Router } from "@angular/router";
 import * as moment from "moment";
 
-let taskList = ["alarm","Bulbasaur","Parasect"]
+let taskList = ["task1","task2","task3"]
 
 @Component({
     selector: "setAlarm",
