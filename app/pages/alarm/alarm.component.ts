@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import { Router } from "@angular/router";
 import { Page } from "ui/page";
 let sound = require("nativescript-sound");
+let timer = require('timer');
 
 @Component({
     selector: "alarm",
@@ -10,6 +11,7 @@ let sound = require("nativescript-sound");
 export class AlarmPage implements OnInit {
   public counter: number = 16;
   private taskPassed = false;
+  private alarmLooper = {};
   private sounds: any = {
     "Foghorn": sound.create("~/sounds/Foghorn.mp3"),
     "Alarm": sound.create("~/sounds/Alarm_Clock.mp3"),
@@ -30,19 +32,30 @@ export class AlarmPage implements OnInit {
   }
 
   public playAlarm() {
-    this.sounds["Warning"].play();
+    // let alarmArray = Object.keys(this.sounds)
+    // let randomAlarm = alarmArray[Math.floor(Math.random() * alarmArray.length)]
+    this.sounds["Railroad"].play();
+    this.alarmLooper = timer.setInterval(() => {
+      this.sounds["Railroad"].play();
+    }, 10000);
+  }
+
+  private _stopAlarm() {
+    this.sounds["Railroad"].stop();
+    timer.clearInterval(this.alarmLooper);
   }
 
   ngOnInit() {
     this.playAlarm();
+
   }
 
   onTap() {
     if (!this.taskPassed) {
       this.counter--;
     } else {
-      this.sounds["Warning"].stop();
-      this._router.navigate(["list"]);
+      this._stopAlarm();
+      this._router.navigate([""]);
     }
   }
 
