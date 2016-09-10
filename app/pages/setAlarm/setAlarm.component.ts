@@ -45,7 +45,7 @@ export class SetAlarmPage {
 
     applicationSettings.setNumber("plusDays", this._plusDays);
 
-    this._router.navigate(["slider"]);
+    this._router.navigate(["slide"]);
   }
 
 }

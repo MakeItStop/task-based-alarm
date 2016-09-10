@@ -3,13 +3,13 @@ import {nsProvideRouter} from "nativescript-angular/router"
 import {SetAlarmPage} from "./pages/setAlarm/setAlarm.component";
 import {AlarmPage} from "./pages/alarm/alarm.component";
 import {ListPage} from "./pages/list/list.component";
-import {SliderPage} from "./pages/slider/slider.component";
+import {SlidePage} from "./pages/slide/slide.component";
 
 export const routes: RouterConfig = [
   { path: "", component: SetAlarmPage },
   { path: "list", component: ListPage },
   { path: "alarm", component: AlarmPage },
-  { path: "slider", component: SliderPage },
+  { path: "slide", component: SlidePage },
 ];
 
 export const APP_ROUTER_PROVIDERS = [
