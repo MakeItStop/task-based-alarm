@@ -8,6 +8,7 @@ let timer = require('timer');
 @Component({
   selector: "slide",
   templateUrl: "pages/slide/slide.component.html",
+  styleUrls: ["pages/slide/slide.component.css"]
 })
 
 export class SlidePage implements OnInit {
@@ -21,6 +22,7 @@ export class SlidePage implements OnInit {
   };
 
   constructor(private _router: Router) {}
+
 
   public playAlarm() {
     // let alarmArray = Object.keys(this.sounds)
@@ -40,10 +42,14 @@ export class SlidePage implements OnInit {
     this.playAlarm();
   }
 
-  checkValue(slider:Slider){
-    if (slider.value == slider.maxValue) {
+  checkValue(slider1,slider2,slider3,slider4,slider5){
+    let args = Array.prototype.slice.call(arguments);
+    let values = args.map(function(i){return i.value});
+    // console.log("valuesArr>>>>>>" + values);
+    if (values.every(elem => elem === 10)) {
       this._stopAlarm();
       this._router.navigate([""]);
     };
   };
+
 }
