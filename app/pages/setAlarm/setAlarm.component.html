@@ -1,16 +1,17 @@
-<StackLayout>
-    <GridLayout rows="auto, auto" class="example-container">
-        <StackLayout row="0">
-            <Label text="Choose a time" class="title"></Label>
-            <timePicker class="example-container" #timePicker (loaded)="configureTime(timePicker)" verticalAlignment="center"></timePicker>
-        </StackLayout>
-        <ListPicker #picker
-            row="1"
-            [items]="tasks"
-            [selectedIndex]="selectedIndex"
-            (selectedIndexChange)="selectedIndexChanged(picker)">
-        </ListPicker>
+  <StackLayout>
 
-    </GridLayout>
-    <Button row="2" text="Set Alarm" (tap)="saveTime(timePicker)"></Button>
-</StackLayout>
+    <Label text="Choose a time" class="title" row="0"></Label>
+
+    <timePicker class="picker" #timePicker (loaded)="configureTime(timePicker)" verticalAlignment="center" row="1"></timePicker>
+
+    <ListPicker #picker
+        class="picker"
+        row="2"
+        [items]="tasks"
+        [selectedIndex]="selectedIndex"
+        (selectedIndexChange)="selectedIndexChanged(picker)">
+    </ListPicker>
+
+    <Button row="3" text="Set Alarm" (tap)="saveTime(timePicker)"></Button>
+
+  </StackLayout>
