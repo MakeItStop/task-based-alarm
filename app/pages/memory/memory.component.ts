@@ -54,19 +54,33 @@ export class MemoryPage implements OnInit {
 
   chooseTile(tile) {
     this.selectedTiles.push(tile);
-    if (this.selectedTiles.length === 2) {
+    if (this.selectedTiles.length % 2 === 0) {
       this.matchTile();
     }
   }
 
   matchTile() {
-    console.log(this.selectedTiles);
-    if (this.selectedTiles[0].id === this.selectedTiles[1].id) {
-      this.taskPassed = true;
-    } else {
+    if (this.doesIdMatch()) {
+      if (this.allTilesMatched()) {
+        this.taskPassed = true;
+      }
+    }
+    else {
       timer.setTimeout(() => {
-        this.selectedTiles = [];
-      }, 500)
+        this.selectedTiles.splice(-2,2);
+      }, 500);
     }
   }
+
+  doesIdMatch(){
+    let tilesLength = this.selectedTiles.length;
+    return (this.selectedTiles[tilesLength - 1].id === this.selectedTiles[tilesLength - 2].id);
+  }
+
+  allTilesMatched(){
+    let tilesLength = this.selectedTiles.length;
+    return tilesLength === 4;
+  }
+
+
 }
