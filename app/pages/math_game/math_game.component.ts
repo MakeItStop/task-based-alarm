@@ -12,10 +12,11 @@ export class MathGame implements OnInit {
 
   private taskPassed = false;
   private alarmLooper = {};
-  public math = null
-  public num1 = Math.floor(Math.random() * 95) + 1
-  public num2 = Math.floor(Math.random() * 73) + 1
-  public num3 = Math.floor(Math.random() * 47) + 1 
+  private math = null
+  private num1 = Math.floor(Math.random() * 95) + 1
+  private num2 = Math.floor(Math.random() * 73) + 1
+  private num3 = Math.floor(Math.random() * 47) + 1
+  private num4 = Math.floor(Math.random() * 36) + 1
   private sounds: any = {
     "Foghorn": sound.create("~/sounds/Foghorn.mp3"),
     "Alarm": sound.create("~/sounds/Alarm_Clock.mp3"),
@@ -27,11 +28,11 @@ export class MathGame implements OnInit {
   constructor(private _router: Router) {}
 
   public get question(): string{
-    return "What is " + this.num1 + "+" + this.num2 + "-" +this.num3
+    return "What is " + this.num1 + "+" + this.num2 + "-" + this.num3 + "-" + this.num4 + "?"
   }
 
   public get message(): string{
-    if (this.math == (this.num1 + this.num2 - this.num3)) {
+    if (this.math == (this.num1 + this.num2 - this.num3 - this.num4)) {
       this.taskPassed = true;
       return "Correct!!"
     } else {
@@ -42,14 +43,14 @@ export class MathGame implements OnInit {
   public playAlarm() {
     // let alarmArray = Object.keys(this.sounds)
     // let randomAlarm = alarmArray[Math.floor(Math.random() * alarmArray.length)]
-    this.sounds["Bomb_Siren"].play();
+    this.sounds["Foghorn"].play();
     this.alarmLooper = timer.setInterval(() => {
-      this.sounds["Bomb_Siren"].play();
-    }, 10000);
+      this.sounds["Foghorn"].play();
+    }, 5000);
   }
 
   private _stopAlarm() {
-    this.sounds["Bomb_Siren"].stop();
+    this.sounds["Foghorn"].stop();
     timer.clearInterval(this.alarmLooper);
   }
 
@@ -58,7 +59,7 @@ export class MathGame implements OnInit {
   }
 
   onTap() {
-    if (this.math == (this.num1 + this.num2 - this.num3)) {
+    if (this.math == (this.num1 + this.num2 - this.num3 - this.num4)) {
       this._stopAlarm();
       this._router.navigate([""]);
     } else {
