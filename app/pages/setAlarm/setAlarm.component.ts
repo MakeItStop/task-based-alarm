@@ -6,7 +6,7 @@ import { Router } from "@angular/router";
 import * as moment from "moment";
 import { Page } from "ui/page";
 
-let taskList = ["alarm","math-game","slide"]
+let taskList = ["alarm","math-game","slide", "gesture"]
 
 @Component({
   selector: "setAlarm",

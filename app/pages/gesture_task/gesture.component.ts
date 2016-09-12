@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import { Router } from "@angular/router";
 import { Page } from "ui/page";
+import { SwipeGestureEventData, PinchGestureEventData, RotationGestureEventData } from "ui/gestures";
 let sound = require("nativescript-sound");
 let timer = require('timer');
 
@@ -9,6 +10,7 @@ let timer = require('timer');
     templateUrl: "pages/gesture_task/gesture.component.html",
 })
 export class GesturePage implements OnInit {
+  private counter: number = 4;
   private taskPassed = false;
   private alarmLooper = {};
   private sounds: any = {
@@ -21,18 +23,7 @@ export class GesturePage implements OnInit {
 
   constructor(private _router: Router) {}
 
-  // public get message(): string{
-  //   if (this.counter > 0) {
-  //     return this.counter + " taps left";
-  //   } else {
-  //     this.taskPassed = true;
-  //     return "You are awake"
-  //   }
-  // }
-
   public playAlarm() {
-    // let alarmArray = Object.keys(this.sounds)
-    // let randomAlarm = alarmArray[Math.floor(Math.random() * alarmArray.length)]
     this.sounds["Railroad"].play();
     this.alarmLooper = timer.setInterval(() => {
       this.sounds["Railroad"].play();
@@ -48,12 +39,27 @@ export class GesturePage implements OnInit {
     this.playAlarm();
   }
 
-  // onPan(args: PanGestureEventData) {
-  //   console.log("Pan delta: [" + args.deltaX + ", " + args.deltaY + "] state: " + args.state);
-  // }
-
   onLongPress() {
     console.log("LongPress!");
+    this.counter--;
+  }
+
+  onSwipe(args: SwipeGestureEventData) {
+      if (args.direction === 2) {
+        this.counter--;
+      }
+  }
+
+  onPinch(args: PinchGestureEventData) {
+    this.counter--;
+    console.log("Pinch scale: " + args.scale + " state: " + args.state);
+    this._stopAlarm();
+    this._router.navigate([""]);
+  }
+
+  onRotate(args: RotationGestureEventData) {
+    this.counter--;
+    console.log("Rotate angle: " + args.rotation + " state: " + args.state);
     this._stopAlarm();
     this._router.navigate([""]);
   }

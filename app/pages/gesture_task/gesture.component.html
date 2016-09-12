@@ -1,3 +1,9 @@
 <StackLayout>
   <Button text="Long press here" (longPress)="onLongPress($event)"></Button>
+  <Label text="Swipe LEFT here" (swipe)="onSwipe($event)"></Label>
+  <Label text="Pinch from here to          here" (pinch)="onPinch($event)"></Label>
+
+
+
+  <Label text="Rotate here" (rotation)="onRotate($event)"></Label>
 </StackLayout>
