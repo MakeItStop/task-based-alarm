@@ -14,8 +14,7 @@ let timer = require('timer');
 export class MemoryPage implements OnInit {
   private _taskPassed = false;
   private alarmLooper = {};
-  private _firstTile = null;
-  public selectedTile = null;
+  public selectedTiles = [];
 
   private sounds: any = {
     "Foghorn": sound.create("~/sounds/Foghorn.mp3"),
@@ -54,20 +53,20 @@ export class MemoryPage implements OnInit {
   }
 
   chooseTile(tile) {
-    this.selectedTile = tile;
-    if (!this._firstTile) {
-      this._firstTile = tile;
-
-    } else {
-      this.matchTile(tile)
+    this.selectedTiles.push(tile);
+    if (this.selectedTiles.length === 2) {
+      this.matchTile();
     }
   }
 
-  matchTile(tile) {
-    if (this._firstTile.id === tile.id) {
-      this._taskPassed = true
-    // } else {
-    //
+  matchTile() {
+    console.log(this.selectedTiles);
+    if (this.selectedTiles[0].id === this.selectedTiles[1].id) {
+      this._taskPassed = true;
+    } else {
+      timer.setTimeout(() => {
+        this.selectedTiles = [];
+      }, 1000)
     }
   }
 }

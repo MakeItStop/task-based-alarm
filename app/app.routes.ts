@@ -15,7 +15,7 @@ export const routes: RouterConfig = [
   { path: "slide", component: SlidePage },
   { path: "gesture", component: GesturePage },
   { path: "memory", component: MemoryPage },
-  { path: "math-game", component: MathGame }
+  { path: "math-game", component: MathGame }]
 
 export const APP_ROUTER_PROVIDERS = [
   nsProvideRouter(routes, {})

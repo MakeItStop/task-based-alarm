@@ -2,10 +2,19 @@
   <Label text="Test Your Memory" class="title"></Label>
   <Label text="End Alarm" (tap)="onTap()"></Label>
   <GridLayout columns="*, auto" rows="*, auto" width="300" height="300">
-      <Button #one id="red" [class.selected]="one === selectedTile" row="0" col="0" width="150" height="150" (tap)="chooseTile(one)" backgroundColor="red"></Button>
-      <Button #two id="purple" row="0" col="1" [class.selected]="two === selectedTile" backgroundColor="purple" width="150" height="150" (tap)="chooseTile(two)"></Button>
-      <Button #three id="purple" row="1" col="0" [class.selected]="three === selectedTile" backgroundColor="purple" width="150" height="150" (tap)="chooseTile(three)"></Button>
-      <Button #four [class.selected]="four === selectedTile" id="red" row="1" col="1" width="150" height="150" (tap)="chooseTile(four)" backgroundColor="red"></Button>
+
+      <Button #one id="red" [class.selected]="selectedTiles.includes(one)" row="0" col="0"
+      width="150" height="150" (tap)="chooseTile(one)" backgroundColor="red"></Button>
+
+      <Button #two id="purple" row="0" col="1" [class.selected]="selectedTiles.includes(two)"
+      backgroundColor="purple" width="150" height="150" (tap)="chooseTile(two)"></Button>
+
+      <Button #three id="purple" row="1" col="0" [class.selected]="selectedTiles.includes(three)"
+       backgroundColor="purple" width="150" height="150" (tap)="chooseTile(three)"></Button>
+
+      <Button #four [class.selected]="selectedTiles.includes(four)" id="red" row="1" col="1"
+       width="150" height="150" (tap)="chooseTile(four)" backgroundColor="red"></Button>
+
   </GridLayout>
 
 </StackLayout>
