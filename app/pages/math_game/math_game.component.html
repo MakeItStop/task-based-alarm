@@ -1,12 +1,9 @@
+<StackLayout>
+    <Label [text]="question" class="title"></Label>
 
+    <TextField hint="Enter number" [(ngModel)]="math"></TextField>
 
+    <Button text="TAP" (tap)="onTap()"></Button>
 
-  <StackLayout>
-      <Label text="Do the Math to stop" class="title"></Label>
-
-      <TextField hint="35 + 35 - 56 - 13 + 21 + 72" [(ngModel)]="math"></TextField>
-
-      <Button text="TAP" (tap)="onTap()"></Button>
-
-      <Label [text]="message" class="message" textWrap="true"></Label>
-  </StackLayout>
+    <Label [text]="message" class="message" textWrap="true"></Label>
+</StackLayout>

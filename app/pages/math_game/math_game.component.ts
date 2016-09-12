@@ -13,6 +13,9 @@ export class MathGame implements OnInit {
   private taskPassed = false;
   private alarmLooper = {};
   public math = null
+  public num1 = Math.floor(Math.random() * 95) + 1
+  public num2 = Math.floor(Math.random() * 73) + 1
+  public num3 = Math.floor(Math.random() * 47) + 1 
   private sounds: any = {
     "Foghorn": sound.create("~/sounds/Foghorn.mp3"),
     "Alarm": sound.create("~/sounds/Alarm_Clock.mp3"),
@@ -23,12 +26,16 @@ export class MathGame implements OnInit {
 
   constructor(private _router: Router) {}
 
+  public get question(): string{
+    return "What is " + this.num1 + "+" + this.num2 + "-" +this.num3
+  }
+
   public get message(): string{
-    if (this.math == 92) {
+    if (this.math == (this.num1 + this.num2 - this.num3)) {
       this.taskPassed = true;
       return "Correct!!"
     } else {
-      return ;
+      return "try again";
     }
   }
 
@@ -51,7 +58,7 @@ export class MathGame implements OnInit {
   }
 
   onTap() {
-    if (this.math == 92) {
+    if (this.math == (this.num1 + this.num2 - this.num3)) {
       this._stopAlarm();
       this._router.navigate([""]);
     } else {
