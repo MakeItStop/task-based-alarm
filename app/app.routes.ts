@@ -5,6 +5,7 @@ import {AlarmPage} from "./pages/alarm/alarm.component";
 import {MathGame} from "./pages/math_game/math_game.component";
 import {ListPage} from "./pages/list/list.component";
 import {SlidePage} from "./pages/slide/slide.component";
+import {MemoryPage} from "./pages/memory/memory.component";
 
 
 export const routes: RouterConfig = [
@@ -12,6 +13,7 @@ export const routes: RouterConfig = [
   { path: "list", component: ListPage },
   { path: "alarm", component: AlarmPage },
   { path: "slide", component: SlidePage },
+  { path: "memory", component: MemoryPage },
   { path: "math-game", component: MathGame }
 ];
 
