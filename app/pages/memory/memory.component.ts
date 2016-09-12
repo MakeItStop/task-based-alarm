@@ -54,9 +54,10 @@ export class MemoryPage implements OnInit {
   }
 
   chooseTile(tile) {
+    this.selectedTile = tile;
     if (!this._firstTile) {
       this._firstTile = tile;
-      this.selectedTile = tile;
+
     } else {
       this.matchTile(tile)
     }
