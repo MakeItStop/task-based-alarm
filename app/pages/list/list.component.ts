@@ -13,6 +13,7 @@ export class ListPage implements OnInit {
 
   constructor(private _router: Router) {}
 
+  private _selectedTask = applicationSettings.getString("task");
   private _timeString = applicationSettings.getNumber("hour") + ":" + applicationSettings.getNumber("minute");
   private _now = moment();
   private _plusDays = applicationSettings.getNumber("plusDays")
@@ -26,12 +27,12 @@ export class ListPage implements OnInit {
       timer.clearTimeout(global.alarmTimer);
     }
     global.alarmTimer = timer.setTimeout(() => {
-      this._router.navigate(["alarm"]);
+      this._router.navigate([this._selectedTask]);
     }, this._until)
   }
 
   seeAlarm() {
-    this._router.navigate(["math_game"]);
+    this._router.navigate([this._selectedTask]);
   }
 
 }

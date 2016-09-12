@@ -5,13 +5,14 @@ import * as applicationSettings from "application-settings";
 import { Router } from "@angular/router";
 import * as moment from "moment";
 
-let taskList = ["task1","task2","task3"]
+let taskList = ["alarm","math-game","slide"]
 
 @Component({
   selector: "setAlarm",
   templateUrl: "pages/setAlarm/setAlarm.component.html",
 })
 export class SetAlarmPage {
+  private _currentTask = "taskholder";
   private _plusDays = 0;
   public tasks: Array<string>;
 
@@ -25,6 +26,9 @@ export class SetAlarmPage {
 
   public selectedIndexChanged(picker) {
     console.log('picker selection: ' + picker.selectedIndex);
+    this._currentTask = taskList[picker.selectedIndex];
+    this._currentTask = this._currentTask || "alarm";
+    console.log("SELECTION>>>" + this._currentTask);
   }
 
   configureTime(timePicker: TimePicker) {
@@ -44,8 +48,8 @@ export class SetAlarmPage {
     }
 
     applicationSettings.setNumber("plusDays", this._plusDays);
-
-    this._router.navigate(["slide"]);
+    applicationSettings.setString("task", this._currentTask);
+    this._router.navigate(["list"]);
   }
 
 }

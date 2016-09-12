@@ -12,7 +12,7 @@ export const routes: RouterConfig = [
   { path: "list", component: ListPage },
   { path: "alarm", component: AlarmPage },
   { path: "slide", component: SlidePage },
-  { path: "math_game", component: MathGame }
+  { path: "math-game", component: MathGame }
 ];
 
 export const APP_ROUTER_PROVIDERS = [
