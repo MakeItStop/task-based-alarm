@@ -6,7 +6,7 @@ import {MathGame} from "./pages/math_game/math_game.component";
 import {ListPage} from "./pages/list/list.component";
 import {SlidePage} from "./pages/slide/slide.component";
 import {GesturePage} from "./pages/gesture_task/gesture.component";
-
+import {MemoryPage} from "./pages/memory/memory.component";
 
 export const routes: RouterConfig = [
   { path: "", component: SetAlarmPage },
@@ -14,8 +14,8 @@ export const routes: RouterConfig = [
   { path: "alarm", component: AlarmPage },
   { path: "slide", component: SlidePage },
   { path: "gesture", component: GesturePage },
-  { path: "math-game", component: MathGame }
-];
+  { path: "memory", component: MemoryPage },
+  { path: "math-game", component: MathGame }]
 
 export const APP_ROUTER_PROVIDERS = [
   nsProvideRouter(routes, {})
