@@ -11,6 +11,11 @@ button, label, stack-layout {
     horizontal-align: center;
 }
 
+stack-layout {
+  margin-left: 5;
+  margin-right: 5;
+}
+
 button {
     font-size: 36;
 }
@@ -32,4 +37,18 @@ button {
 
 .alarm-time{
   font-size: 60;
+}
+
+.gesture-space {
+    height: 80;
+    width: 100%;
+    margin-bottom: 20;
+    border-color: #ffffff;
+    border-width: 1;
+    border-radius: 5;
+}
+
+.gesture-space label {
+  horizontal-align: center;
+  vertical-align: center;
 }

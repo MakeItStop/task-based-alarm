@@ -8,6 +8,7 @@ let timer = require('timer');
 @Component({
     selector: "gesture",
     templateUrl: "pages/gesture_task/gesture.component.html",
+    // styleUrls : ['gesture.component.css']
 })
 export class GesturePage implements OnInit {
   private counter: number = 4;
