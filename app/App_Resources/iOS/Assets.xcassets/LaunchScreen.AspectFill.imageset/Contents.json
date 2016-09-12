@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "LaunchScreen-AspectFill.png",
+      "filename" : "Launch Screen.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "LaunchScreen-AspectFill@2x.png",
+      "filename" : "Launch Screen@2x.png",
       "scale" : "2x"
     },
     {

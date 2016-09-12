@@ -4,6 +4,7 @@ import { ListPicker } from "ui/list-picker";
 import * as applicationSettings from "application-settings";
 import { Router } from "@angular/router";
 import * as moment from "moment";
+import { Page } from "ui/page";
 
 let taskList = ["alarm","math-game","slide"]
 

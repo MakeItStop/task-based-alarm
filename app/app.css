@@ -1,9 +1,18 @@
-﻿button, label, stack-layout {
+page {
+    background-color: #525478;
+    color: #ffffff;
+}
+
+button, label, stack-layout {
     horizontal-align: center;
 }
 
 button {
     font-size: 36;
+}
+
+.picker {
+    color: #ffffff;
 }
 
 .title {
@@ -13,10 +22,10 @@ button {
 
 .message {
     font-size: 20;
-    color: #284848;
     text-align: center;
     margin: 0 20;
 }
+
 .alarm-time{
   font-size: 60;
 }
