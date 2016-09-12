@@ -79,7 +79,7 @@ export class MemoryPage implements OnInit {
 
   allTilesMatched(){
     let tilesLength = this.selectedTiles.length;
-    return tilesLength === 4;
+    return tilesLength === 24;
   }
 
 

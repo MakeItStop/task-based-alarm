@@ -2,18 +2,86 @@
   <Label text="Test Your Memory" class="title"></Label>
 
 
-  <GridLayout rows="60,60,auto" columns="60,60" horizontalAlignment="center" verticalAlignment="center">
+  <GridLayout rows="60,60,60,60,60,60,auto" columns="60,60,60,60" horizontalAlignment="center" verticalAlignment="center">
     <Button #one id="red" [class.selected]="selectedTiles.includes(one)" row="0" col="0"
      (tap)="chooseTile(one)" ></Button>
 
-    <Button #two id="purple" row="0" col="1" [class.selected]="selectedTiles.includes(two)"
+    <Button #two id="black" [class.selected]="selectedTiles.includes(two)" row="0" col="1"
      (tap)="chooseTile(two)"></Button>
 
-    <Button #three id="purple" row="1" col="0" [class.selected]="selectedTiles.includes(three)"
-      (tap)="chooseTile(three)"></Button>
+    <Button #three id="yellow" [class.selected]="selectedTiles.includes(three)" row="0" col="2"
+     (tap)="chooseTile(three)" ></Button>
 
-    <Button #four [class.selected]="selectedTiles.includes(four)" id="red" row="1" col="1"
-      (tap)="chooseTile(four)" ></Button>
-    <Label id="endAlarm" text="End Alarm" (tap)="onTap()" row="2" colSpan="2" horizontalAlignment="center" [class.taskPassed]="taskPassed"></Label>
+    <Button #four id="silver" [class.selected]="selectedTiles.includes(four)" row="0" col="3"
+     (tap)="chooseTile(four)" ></Button>
+
+
+    <Button #five id="red" [class.selected]="selectedTiles.includes(five)" row="1" col="0"
+     (tap)="chooseTile(five)" ></Button>
+
+    <Button #six id="purple" [class.selected]="selectedTiles.includes(six)" row="1" col="1"
+     (tap)="chooseTile(six)"></Button>
+
+    <Button #seven id="pink" [class.selected]="selectedTiles.includes(seven)" row="1" col="2"
+     (tap)="chooseTile(seven)" ></Button>
+
+    <Button #eight id="orange" [class.selected]="selectedTiles.includes(eight)" row="1" col="3"
+     (tap)="chooseTile(eight)" ></Button>
+
+
+    <Button #nine id="snotGreen" [class.selected]="selectedTiles.includes(nine)" row="2" col="0"
+     (tap)="chooseTile(nine)" ></Button>
+
+    <Button #ten id="green" [class.selected]="selectedTiles.includes(ten)" row="2" col="1"
+     (tap)="chooseTile(ten)"></Button>
+
+    <Button #eleven id="black" [class.selected]="selectedTiles.includes(eleven)" row="2" col="2"
+     (tap)="chooseTile(eleven)" ></Button>
+
+    <Button #twelve id="purple" [class.selected]="selectedTiles.includes(twelve)" row="2" col="3"
+     (tap)="chooseTile(twelve)" ></Button>
+
+
+    <Button #thirteen id="blue" [class.selected]="selectedTiles.includes(thirteen)" row="3" col="0"
+     (tap)="chooseTile(thirteen)" ></Button>
+
+    <Button #fourteen id="green" [class.selected]="selectedTiles.includes(fourteen)" row="3" col="1"
+     (tap)="chooseTile(fourteen)"></Button>
+
+    <Button #fifteen id="yellow" [class.selected]="selectedTiles.includes(fifteen)" row="3" col="2"
+     (tap)="chooseTile(fifteen)" ></Button>
+
+    <Button #sixteen id="silver" [class.selected]="selectedTiles.includes(sixteen)" row="3" col="3"
+     (tap)="chooseTile(sixteen)" ></Button>
+
+
+    <Button #seventeen id="orange" [class.selected]="selectedTiles.includes(seventeen)" row="4" col="0"
+     (tap)="chooseTile(seventeen)" ></Button>
+
+    <Button #eighteen id="pink" [class.selected]="selectedTiles.includes(eighteen)" row="4" col="1"
+     (tap)="chooseTile(eighteen)"></Button>
+
+    <Button #nineteen id="beige" [class.selected]="selectedTiles.includes(nineteen)" row="4" col="2"
+     (tap)="chooseTile(nineteen)" ></Button>
+
+    <Button #twenty id="beige" [class.selected]="selectedTiles.includes(twenty)" row="4" col="3"
+     (tap)="chooseTile(twenty)" ></Button>
+
+
+    <Button #twentyOne id="brown" [class.selected]="selectedTiles.includes(twentyOne)" row="5" col="0"
+     (tap)="chooseTile(twentyOne)" ></Button>
+
+    <Button #twentyTwo id="snotGreen" [class.selected]="selectedTiles.includes(twentyTwo)" row="5" col="1"
+     (tap)="chooseTile(twentyTwo)"></Button>
+
+    <Button #twentyThree id="blue" [class.selected]="selectedTiles.includes(twentyThree)" row="5" col="2"
+     (tap)="chooseTile(twentyThree)" ></Button>
+
+    <Button #twentyFour id="brown" [class.selected]="selectedTiles.includes(twentyFour)" row="5" col="3"
+     (tap)="chooseTile(twentyFour)" ></Button>
+
+
+
+    <Label id="endAlarm" text="End Alarm" (tap)="onTap()" row="6" colSpan="4" horizontalAlignment="center" [class.taskPassed]="taskPassed"></Label>
   </GridLayout>
 </StackLayout>

@@ -10,6 +10,38 @@ Button {
 #red.selected {
   background-color: red;
 }
+#yellow.selected {
+  background-color: yellow;
+}
+#blue.selected {
+  background-color: blue;
+}
+#orange.selected {
+  background-color: rgb(236, 119, 12);
+}
+#green.selected {
+  background-color: rgb(14, 89, 19);
+}
+#black.selected {
+  background-color: black;
+}
+#pink.selected {
+  background-color: rgb(212, 83, 224);
+}
+#silver.selected {
+  background-color: rgb(131, 151, 164);
+}
+#beige.selected {
+  background-color: rgb(204, 137, 89);
+}
+#brown.selected {
+  background-color: rgb(57, 38, 13);
+}
+#snotGreen.selected {
+  background-color: rgb(6, 242, 65);
+}
+
+
 
 #endAlarm {
   visibility: collapse;
