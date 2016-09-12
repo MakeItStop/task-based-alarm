@@ -2,16 +2,12 @@
 </ActionBar>
 <StackLayout>
 
-  <label class="gesture-space" text="Long press here" (longPress)="onLongPress($event)"></label>
-  <label [text]="message1" textWrap="true"></label>
+  <label class="gesture-space" [text]="longPressMessage" (longPress)="onLongPress($event)"></label>
 
-  <Label class="gesture-space" text="Swipe LEFT here" (swipe)="onSwipe($event)"></Label>
-  <label [text]="message2" textWrap="true"></label>
+  <Label class="gesture-space" [text]="rotateMessage" (rotation)="onRotate($event)"></Label>
 
-  <Label class="gesture-space" text="Pinch here" (pinch)="onPinch($event)"></Label>
-  <label [text]="message3" textWrap="true"></label>
+  <Label class="gesture-space" [text]="pinchMessage" (pinch)="onPinch($event)"></Label>
 
-  <Label class="gesture-space" text="Rotate here" (rotation)="onRotate($event)"></Label>
-  <label [text]="message4" textWrap="true"></label>
+  <Label class="gesture-space" [text]="swipeMessage" (swipe)="onSwipe($event)"></Label>
 
 </StackLayout>

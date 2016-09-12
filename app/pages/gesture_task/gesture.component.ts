@@ -11,8 +11,6 @@ let timer = require('timer');
     // styleUrls : ['gesture.component.css']
 })
 export class GesturePage implements OnInit {
-  private counter: number = 4;
-  private taskPassed = false;
   private longPress = false;
   private swipeLeft = false;
   private pinch = false;
@@ -36,27 +34,39 @@ export class GesturePage implements OnInit {
     }
   }
 
-  public get message1() : string {
-    if (this.longPress === true) {
-      return "Success!!"
+  private _success() {
+    return "Success!!"
+  }
+
+  public get longPressMessage() : string {
+    if (!this.longPress) {
+      return "Press and hold here";
+    } else {
+      return "Success!!";
     }
   }
 
-  public get message2() : string {
-    if (this.swipeLeft === true) {
-      return "Success!!"
+  public get swipeMessage() : string {
+    if (!this.swipeLeft) {
+      return "Swipe LEFT here"
+    } else {
+      return "Success!!";
     }
   }
 
-  public get message3() : string {
-    if (this.pinch === true) {
-      return "Success!!"
+  public get pinchMessage() : string {
+    if (!this.pinch) {
+      return "Pinch here"
+    } else {
+      return "Success!!";
     }
   }
 
-  public get message4() : string {
-    if (this.rotate === true) {
-      return "Success!!"
+  public get rotateMessage() : string {
+    if (!this.rotate) {
+      return "Rotate here"
+    } else {
+      return "Success!!";
     }
   }
 
