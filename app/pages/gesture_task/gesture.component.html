@@ -1,3 +1,13 @@
+<ActionBar title="Alarm">
+</ActionBar>
 <StackLayout>
-  <Button text="Long press here" (longPress)="onLongPress($event)"></Button>
+
+  <label class="gesture-space" [text]="longPressMessage" (longPress)="onLongPress($event)"></label>
+
+  <Label class="gesture-space" [text]="rotateMessage" (rotation)="onRotate($event)"></Label>
+
+  <Label class="gesture-space" [text]="pinchMessage" (pinch)="onPinch($event)"></Label>
+
+  <Label class="gesture-space" [text]="swipeMessage" (swipe)="onSwipe($event)"></Label>
+
 </StackLayout>
