@@ -18,11 +18,11 @@ export class MathGame implements OnInit {
   private num3 = Math.floor(Math.random() * 47) + 1
   private num4 = Math.floor(Math.random() * 36) + 1
   private sounds: any = {
-    "Foghorn": sound.create("~/sounds/Foghorn.mp3"),
-    "Alarm": sound.create("~/sounds/Alarm_Clock.mp3"),
-    "Bomb_Siren": sound.create("~/sounds/Bomb_Siren.mp3"),
-    "Railroad": sound.create("~/sounds/Railroad.mp3"),
-    "Warning": sound.create("~/sounds/Warning.mp3"),
+    "Foghorn": [sound.create("~/sounds/Foghorn.mp3"), 5100],
+    "Alarm": [sound.create("~/sounds/Alarm_Clock.mp3"),21100],
+    "Bomb_Siren": [sound.create("~/sounds/Bomb_Siren.mp3"),21100],
+    "Railroad": [sound.create("~/sounds/Railroad.mp3"),45100],
+    "Warning": [sound.create("~/sounds/Warning.mp3"),39100]
   };
 
   constructor(private _router: Router) {}
@@ -43,14 +43,14 @@ export class MathGame implements OnInit {
   public playAlarm() {
     // let alarmArray = Object.keys(this.sounds)
     // let randomAlarm = alarmArray[Math.floor(Math.random() * alarmArray.length)]
-    this.sounds["Foghorn"].play();
+    this.sounds["Foghorn"][0].play();
     this.alarmLooper = timer.setInterval(() => {
-      this.sounds["Foghorn"].play();
-    }, 5000);
+      this.sounds["Foghorn"][0].play();
+    }, this.sounds["Foghorn"][1]);
   }
 
   private _stopAlarm() {
-    this.sounds["Foghorn"].stop();
+    this.sounds["Foghorn"][0].stop();
     timer.clearInterval(this.alarmLooper);
   }
 

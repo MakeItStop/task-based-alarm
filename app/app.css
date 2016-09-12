@@ -3,8 +3,17 @@ page {
     color: #ffffff;
 }
 
+actionbar {
+    background-color: #525478;
+}
+
 button, label, stack-layout {
     horizontal-align: center;
+}
+
+stack-layout {
+  margin-left: 5;
+  margin-right: 5;
 }
 
 button {
@@ -28,4 +37,16 @@ button {
 
 .alarm-time{
   font-size: 60;
+}
+
+.gesture-space {
+    height: 90;
+    width: 100%;
+    margin: 20 0;
+    border-color: #ffffff;
+    border-width: 1;
+    border-radius: 5;
+    text-align: center;
+    font-size: 30;
+    horizontal-align: center;
 }
