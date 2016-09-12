@@ -1,0 +1,9 @@
+<StackLayout>
+    <Label [text]="question" class="title"></Label>
+
+    <TextField hint="Enter number" [(ngModel)]="math"></TextField>
+
+    <Button text="TAP" (tap)="onTap()"></Button>
+
+    <Label [text]="message" class="message" textWrap="true"></Label>
+</StackLayout>
