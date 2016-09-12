@@ -1,20 +1,19 @@
 <StackLayout>
   <Label text="Test Your Memory" class="title"></Label>
-  <Label text="End Alarm" (tap)="onTap()"></Label>
-  <GridLayout columns="*, auto" rows="*, auto" width="300" height="300">
 
-      <Button #one id="red" [class.selected]="selectedTiles.includes(one)" row="0" col="0"
-      width="150" height="150" (tap)="chooseTile(one)" backgroundColor="red"></Button>
 
-      <Button #two id="purple" row="0" col="1" [class.selected]="selectedTiles.includes(two)"
-      backgroundColor="purple" width="150" height="150" (tap)="chooseTile(two)"></Button>
+  <GridLayout rows="60,60,auto" columns="60,60" horizontalAlignment="center" verticalAlignment="center">
+    <Button #one id="red" [class.selected]="selectedTiles.includes(one)" row="0" col="0"
+     (tap)="chooseTile(one)" ></Button>
 
-      <Button #three id="purple" row="1" col="0" [class.selected]="selectedTiles.includes(three)"
-       backgroundColor="purple" width="150" height="150" (tap)="chooseTile(three)"></Button>
+    <Button #two id="purple" row="0" col="1" [class.selected]="selectedTiles.includes(two)"
+     (tap)="chooseTile(two)"></Button>
 
-      <Button #four [class.selected]="selectedTiles.includes(four)" id="red" row="1" col="1"
-       width="150" height="150" (tap)="chooseTile(four)" backgroundColor="red"></Button>
+    <Button #three id="purple" row="1" col="0" [class.selected]="selectedTiles.includes(three)"
+      (tap)="chooseTile(three)"></Button>
 
+    <Button #four [class.selected]="selectedTiles.includes(four)" id="red" row="1" col="1"
+      (tap)="chooseTile(four)" ></Button>
+    <Label id="endAlarm" text="End Alarm" (tap)="onTap()" row="2" colSpan="2" horizontalAlignment="center" [class.taskPassed]="taskPassed"></Label>
   </GridLayout>
-
 </StackLayout>

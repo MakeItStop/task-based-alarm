@@ -12,7 +12,7 @@ let timer = require('timer');
 })
 
 export class MemoryPage implements OnInit {
-  private _taskPassed = false;
+  public taskPassed = false;
   private alarmLooper = {};
   public selectedTiles = [];
 
@@ -40,11 +40,11 @@ export class MemoryPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.playAlarm();
+    this.playAlarm();
   }
 
   onTap() {
-    if (this._taskPassed) {
+    if (this.taskPassed) {
       this._stopAlarm();
       this._router.navigate([""]);
     } else {
@@ -62,11 +62,11 @@ export class MemoryPage implements OnInit {
   matchTile() {
     console.log(this.selectedTiles);
     if (this.selectedTiles[0].id === this.selectedTiles[1].id) {
-      this._taskPassed = true;
+      this.taskPassed = true;
     } else {
       timer.setTimeout(() => {
         this.selectedTiles = [];
-      }, 1000)
+      }, 500)
     }
   }
 }

@@ -1,7 +1,20 @@
 Button {
-  /*background-color: yellow;*/
+  background-color: white;
+  horizontal-align: baseline;
+  margin: 2;
 }
 
-.selected {
-  opacity: 0.3;
+#purple.selected {
+  background-color: purple;
+}
+#red.selected {
+  background-color: red;
+}
+
+#endAlarm {
+  visibility: collapse;
+}
+
+#endAlarm.taskPassed {
+  visibility: visible;
 }
