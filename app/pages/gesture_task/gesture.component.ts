@@ -23,6 +23,21 @@ export class GesturePage implements OnInit {
 
   constructor(private _router: Router) {}
 
+  private _taskStop() {
+    if (this.counter === 0) {
+      this._stopAlarm();
+      this._router.navigate([""]);
+    }
+  }
+
+  public get message() : string {
+    if (this.counter === 0) {
+      return "success!!"
+    } else {
+      return "Tasks incomplete"
+    }
+  }
+
   public playAlarm() {
     this.sounds["Railroad"].play();
     this.alarmLooper = timer.setInterval(() => {
@@ -42,26 +57,32 @@ export class GesturePage implements OnInit {
   onLongPress() {
     console.log("LongPress!");
     this.counter--;
+    this._taskStop()
+    console.log(this.counter)
   }
 
   onSwipe(args: SwipeGestureEventData) {
       if (args.direction === 2) {
         this.counter--;
+        this._taskStop()
+        console.log(this.counter)
       }
   }
 
   onPinch(args: PinchGestureEventData) {
     this.counter--;
-    console.log("Pinch scale: " + args.scale + " state: " + args.state);
-    this._stopAlarm();
-    this._router.navigate([""]);
+    this._taskStop()
+    console.log(this.counter)
   }
 
   onRotate(args: RotationGestureEventData) {
-    this.counter--;
-    console.log("Rotate angle: " + args.rotation + " state: " + args.state);
-    this._stopAlarm();
-    this._router.navigate([""]);
+    if (args.rotation > 89) {
+      this.counter--;
+      this._taskStop()
+      console.log(this.counter)
+    }
   }
+
+
 
 }
