@@ -3,6 +3,10 @@ page {
     color: #ffffff;
 }
 
+actionbar {
+    background-color: #525478;
+}
+
 button, label, stack-layout {
     horizontal-align: center;
 }
