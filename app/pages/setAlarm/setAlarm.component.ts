@@ -8,23 +8,23 @@ import * as moment from "moment";
 let taskList = ["task1","task2","task3"]
 
 @Component({
-    selector: "setAlarm",
-    templateUrl: "pages/setAlarm/setAlarm.component.html",
+  selector: "setAlarm",
+  templateUrl: "pages/setAlarm/setAlarm.component.html",
 })
 export class SetAlarmPage {
-    private _plusDays = 0;
-    public tasks: Array<string>;
+  private _plusDays = 0;
+  public tasks: Array<string>;
 
   constructor(private _router: Router) {
-      this.tasks = [];
+    this.tasks = [];
 
-      for (let i = 0; i < taskList.length; i++) {
-          this.tasks.push(taskList[i]);
-      }
+    for (let i = 0; i < taskList.length; i++) {
+      this.tasks.push(taskList[i]);
+    }
   }
 
   public selectedIndexChanged(picker) {
-      console.log('picker selection: ' + picker.selectedIndex);
+    console.log('picker selection: ' + picker.selectedIndex);
   }
 
   configureTime(timePicker: TimePicker) {
@@ -45,7 +45,7 @@ export class SetAlarmPage {
 
     applicationSettings.setNumber("plusDays", this._plusDays);
 
-    this._router.navigate(["list"]);
+    this._router.navigate(["slide"]);
   }
 
 }
