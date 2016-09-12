@@ -31,7 +31,7 @@ export class ListPage implements OnInit {
   }
 
   seeAlarm() {
-    this._router.navigate(["math_game"]);
+    this._router.navigate(["gesture"]);
   }
 
 }
