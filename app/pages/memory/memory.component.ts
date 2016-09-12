@@ -1,17 +1,22 @@
-import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
+import { Component, OnInit } from '@angular/core'
 import { Router } from "@angular/router";
-import { Page } from "ui/page";
 let sound = require("nativescript-sound");
 let timer = require('timer');
 
+
 @Component({
-    selector: "alarm",
-    templateUrl: "pages/alarm/alarm.component.html"
+  selector: "memory",
+  templateUrl: "pages/memory/memory.component.html",
+  styleUrls: ["pages/memory/memory-common.css"]
+
 })
-export class AlarmPage implements OnInit {
-  public counter: number = 16;
-  private taskPassed = false;
+
+export class MemoryPage implements OnInit {
+  private _taskPassed = false;
   private alarmLooper = {};
+  private _firstTile = null;
+  public selectedTile = null;
+
   private sounds: any = {
     "Foghorn": sound.create("~/sounds/Foghorn.mp3"),
     "Alarm": sound.create("~/sounds/Alarm_Clock.mp3"),
@@ -21,41 +26,47 @@ export class AlarmPage implements OnInit {
   };
 
   constructor(private _router: Router) {}
-
-  public get message(): string{
-    if (this.counter > 0) {
-      return this.counter + " taps left";
-    } else {
-      this.taskPassed = true;
-      return "You are awake"
-    }
-  }
-
   public playAlarm() {
     // let alarmArray = Object.keys(this.sounds)
     // let randomAlarm = alarmArray[Math.floor(Math.random() * alarmArray.length)]
-    this.sounds["Railroad"].play();
+    this.sounds["Foghorn"].play();
     this.alarmLooper = timer.setInterval(() => {
-      this.sounds["Railroad"].play();
-    }, 10000);
+      this.sounds["Foghorn"].play();
+    }, 5000);
   }
 
   private _stopAlarm() {
-    this.sounds["Railroad"].stop();
+    this.sounds["Foghorn"].stop();
     timer.clearInterval(this.alarmLooper);
   }
 
   ngOnInit() {
-    this.playAlarm();
+    // this.playAlarm();
   }
 
   onTap() {
-    if (!this.taskPassed) {
-      this.counter--;
-    } else {
+    if (this._taskPassed) {
       this._stopAlarm();
       this._router.navigate([""]);
+    } else {
+      return;
     }
   }
 
+  chooseTile(tile) {
+    if (!this._firstTile) {
+      this._firstTile = tile;
+      this.selectedTile = tile;
+    } else {
+      this.matchTile(tile)
+    }
+  }
+
+  matchTile(tile) {
+    if (this._firstTile.id === tile.id) {
+      this._taskPassed = true
+    // } else {
+    //
+    }
+  }
 }
