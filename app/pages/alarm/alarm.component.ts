@@ -6,7 +6,7 @@ let timer = require('timer');
 
 @Component({
     selector: "alarm",
-    templateUrl: "pages/alarm/alarm.component.html",
+    templateUrl: "pages/alarm/alarm.component.html"
 })
 export class AlarmPage implements OnInit {
   public counter: number = 16;
