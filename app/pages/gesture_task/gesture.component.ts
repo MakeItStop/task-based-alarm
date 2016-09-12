@@ -13,6 +13,10 @@ let timer = require('timer');
 export class GesturePage implements OnInit {
   private counter: number = 4;
   private taskPassed = false;
+  private longPress = false;
+  private swipeLeft = false;
+  private pinch = false;
+  private rotate = false;
   private alarmLooper = {};
   private sounds: any = {
     "Foghorn": sound.create("~/sounds/Foghorn.mp3"),
@@ -25,17 +29,34 @@ export class GesturePage implements OnInit {
   constructor(private _router: Router) {}
 
   private _taskStop() {
-    if (this.counter === 0) {
+    if (this.longPress && this.swipeLeft && this.pinch && this.rotate === true) {
       this._stopAlarm();
-      this._router.navigate([""]);
+      timer.setTimeout(() => {
+         this._router.navigate([""]) }, 500);
     }
   }
 
-  public get message() : string {
-    if (this.counter === 0) {
-      return "success!!"
-    } else {
-      return "Tasks incomplete"
+  public get message1() : string {
+    if (this.longPress === true) {
+      return "Success!!"
+    }
+  }
+
+  public get message2() : string {
+    if (this.swipeLeft === true) {
+      return "Success!!"
+    }
+  }
+
+  public get message3() : string {
+    if (this.pinch === true) {
+      return "Success!!"
+    }
+  }
+
+  public get message4() : string {
+    if (this.rotate === true) {
+      return "Success!!"
     }
   }
 
@@ -56,34 +77,26 @@ export class GesturePage implements OnInit {
   }
 
   onLongPress() {
-    console.log("LongPress!");
-    this.counter--;
     this._taskStop()
-    console.log(this.counter)
+    this.longPress = true;
   }
 
   onSwipe(args: SwipeGestureEventData) {
-      if (args.direction === 2) {
-        this.counter--;
-        this._taskStop()
-        console.log(this.counter)
-      }
+    if (args.direction === 2) {
+      this.swipeLeft = true;
+      this._taskStop()
+    }
   }
 
   onPinch(args: PinchGestureEventData) {
-    this.counter--;
+    this.pinch = true;
     this._taskStop()
-    console.log(this.counter)
   }
 
   onRotate(args: RotationGestureEventData) {
     if (args.rotation > 89) {
-      this.counter--;
+      this.rotate = true;
       this._taskStop()
-      console.log(this.counter)
     }
   }
-
-
-
 }

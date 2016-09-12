@@ -3,13 +3,15 @@
 <StackLayout>
 
   <label class="gesture-space" text="Long press here" (longPress)="onLongPress($event)"></label>
+  <label [text]="message1" textWrap="true"></label>
 
   <Label class="gesture-space" text="Swipe LEFT here" (swipe)="onSwipe($event)"></Label>
+  <label [text]="message2" textWrap="true"></label>
 
   <Label class="gesture-space" text="Pinch here" (pinch)="onPinch($event)"></Label>
+  <label [text]="message3" textWrap="true"></label>
 
   <Label class="gesture-space" text="Rotate here" (rotation)="onRotate($event)"></Label>
-
-  <label [text]="message" textWrap="true"></label>
+  <label [text]="message4" textWrap="true"></label>
 
 </StackLayout>
