@@ -4,27 +4,31 @@ var appSettings = require("application-settings");
 
 
 describe("Tests for /pages/setAlarm/setAlarm.component.ts", function() {
-
   var setAlarmComponent;
+  var timePicker;
   beforeEach(function() {
      setAlarmComponent = new component.SetAlarmPage();
+     timePicker = jasmine.createSpyObj('timePicker', ['hour', 'minute']);
+
   });
+
   describe("#configureTime()", function(){
-    it("Verifies that configureTime set a default time value", function() {
-      var timePicker = jasmine.createSpyObj('timePicker', ['hour', 'minute']);
+
+    beforeEach(function() {
       appSettings.setNumber("hour", 9);
       appSettings.setNumber("minute", 25);
+    })
+
+    it("Verifies that configureTime set a default time value", function() {
       setAlarmComponent.configureTime(timePicker);
       expect(timePicker.hour).toEqual(9);
       expect(timePicker.minute).toEqual(25);
     });
   });
+
   describe("#saveTime()", function(){
 
-    var timePicker
-    
     beforeEach(function(){
-      timePicker = jasmine.createSpyObj('timePicker', ['hour', 'minute']);
       timePicker.hour = 12;
       timePicker.minute = 10;
       spyOn(setAlarmComponent, '_routeToList')
@@ -52,12 +56,20 @@ describe("Tests for /pages/setAlarm/setAlarm.component.ts", function() {
       spyOn(setAlarmComponent, '_isSelectedTimeTomorrow').and.returnValue(true);
       setAlarmComponent.saveTime(timePicker);
       expect(appSettings.getNumber("plusDays")).toEqual(1);
-
     });
-
   });
 
-  // it("is able to save a set task value", function() {
-  // });
-  // describe("")
+  describe("#selectedIndexChanged()", function() {
+    var taskPicker;
+    beforeEach(function() {
+      taskPicker = jasmine.createSpyObj('taskPicker', ['selectedIndex']);
+      taskPicker.selectedIndex = 1;
+    });
+
+    it("is able to save a set task value", function() {
+
+      setAlarmComponent.selectedIndexChanged(taskPicker);
+      expect(appSettings.getString("task")).toEqual("math-game");
+    });
+  });
 });

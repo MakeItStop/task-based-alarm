@@ -13,7 +13,7 @@ let taskList = ["alarm","math-game","slide", "gesture", "memory"]
   templateUrl: "pages/setAlarm/setAlarm.component.html",
 })
 export class SetAlarmPage {
-  private _currentTask = "taskholder";
+  private _currentTask = "";
   public tasks: Array<string>;
 
   constructor(private _router: Router) {
@@ -24,9 +24,8 @@ export class SetAlarmPage {
     }
   }
 
-  public selectedIndexChanged(picker) {
-    this._currentTask = taskList[picker.selectedIndex];
-    this._currentTask = this._currentTask || "alarm";
+  public selectedIndexChanged(taskPicker) {
+    this._currentTask = taskList[taskPicker.selectedIndex] || "alarm";
     this._storeString("task", this._currentTask);
   }
 
@@ -44,12 +43,8 @@ export class SetAlarmPage {
   }
 
   private _plusDays(timePicker) {
-    let selectedTime = this._convertToMoment(timePicker.hour + ':' + timePicker.minute, "HH:mm");
+    let selectedTime = moment(timePicker.hour + ':' + timePicker.minute, "HH:mm");
     return this._isSelectedTimeTomorrow(selectedTime) ? 1 : 0;
-  }
-
-  private _convertToMoment(timeString, format) {
-    return moment(timeString, format);
   }
 
   private _isSelectedTimeTomorrow(selectedTime) {
