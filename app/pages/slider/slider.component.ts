@@ -2,6 +2,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import { Slider } from "ui/slider";
 import { Router } from "@angular/router";
+import { PropertyChangeData } from "data/observable";
 let sound = require("nativescript-sound");
 let timer = require('timer');
 
@@ -45,11 +46,14 @@ export class SliderPage implements OnInit {
   checkValue(slider1,slider2,slider3,slider4,slider5){
     let args = Array.prototype.slice.call(arguments);
     let values = args.map(function(i){return i.value});
-    // console.log("valuesArr>>>>>>" + values);
     if (values.every(elem => elem === 10)) {
       this._stopAlarm();
       this._router.navigate([""]);
     };
   };
+
+  valueChanged() {
+    console.log("Property Changed!");
+  }
 
 }
