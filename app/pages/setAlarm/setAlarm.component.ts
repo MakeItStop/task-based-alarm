@@ -25,12 +25,6 @@ export class SetAlarmPage {
     }
   }
 
-  public selectedIndexChanged(picker) {
-    this._currentTask = taskList[picker.selectedIndex];
-    this._currentTask = this._currentTask || "tap";
-  }
-
-
   public selectedIndexChanged(taskPicker) {
     this._currentTask = taskList[taskPicker.selectedIndex] || "tap";
     this._storeString("task", this._currentTask);
