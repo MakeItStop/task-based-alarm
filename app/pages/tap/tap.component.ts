@@ -54,7 +54,6 @@ export class TapPage implements OnInit {
       this.counter--;
     } else {
       this._stopAlarm();
-      console.log("Routing")
       this.routeToHome();
     }
   }

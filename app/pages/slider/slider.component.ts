@@ -1,17 +1,18 @@
-// import observable = require("data/observable");
 import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import { Slider } from "ui/slider";
 import { Router } from "@angular/router";
+import { PropertyChangeData } from "data/observable";
 let sound = require("nativescript-sound");
 let timer = require('timer');
 
 @Component({
   selector: "slide",
-  templateUrl: "pages/slide/slide.component.html",
-  styleUrls: ["pages/slide/slide.component.css"]
+  templateUrl: "pages/slider/slider.component.html",
+  styleUrls: ["pages/slider/slider.component.css"]
 })
 
-export class SlidePage implements OnInit {
+export class SliderPage implements OnInit {
+  private sliderCounter: number = 0;
   private alarmLooper = {};
   private sounds: any = {
     "Foghorn": [sound.create("~/sounds/Foghorn.mp3"), 5100],
@@ -23,6 +24,9 @@ export class SlidePage implements OnInit {
 
   constructor(private _router: Router) {}
 
+  ngOnInit() {
+    this.playAlarm();
+  }
 
   public playAlarm() {
     // let alarmArray = Object.keys(this.sounds)
@@ -38,18 +42,26 @@ export class SlidePage implements OnInit {
     timer.clearInterval(this.alarmLooper);
   }
 
-  ngOnInit() {
-    this.playAlarm();
+  private _taskStop() {
+    if (this.sliderCounter === 5) {
+      this._stopAlarm();
+
+      timer.setTimeout(() => {
+        this.routeToHome();
+      }, 500);
+    }
   }
 
-  checkValue(slider1,slider2,slider3,slider4,slider5){
-    let args = Array.prototype.slice.call(arguments);
-    let values = args.map(function(i){return i.value});
-    // console.log("valuesArr>>>>>>" + values);
-    if (values.every(elem => elem === 10)) {
-      this._stopAlarm();
-      this._router.navigate([""]);
-    };
+  valueChanged(slider) {
+    if (slider.value === slider.maxValue) {
+      slider.isUserInteractionEnabled = false;
+      this.sliderCounter++;
+      this._taskStop();
+    }
+  }
+
+  routeToHome(){
+    this._router.navigate([""]);
   };
 
 }
