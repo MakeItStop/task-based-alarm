@@ -10,13 +10,15 @@ let timer = require('timer');
 })
 export class MathGame implements OnInit {
 
-  private taskPassed = false;
+  private _taskPassed = false;
   private alarmLooper = {};
-  private _answer = null
-  private num1 = Math.floor(Math.random() * 95) + 1
-  private num2 = Math.floor(Math.random() * 73) + 1
-  private num3 = Math.floor(Math.random() * 47) + 1
-  private num4 = Math.floor(Math.random() * 36) + 1
+  public answer = null;
+  private _numberArray = []
+  private _ARRAYMAX = 4;
+  private _NEGATIVEOFFSET = 50;
+  private _RANDOMLIMIT = 100;
+  private _numberStringArray = [];
+
   private sounds: any = {
     "Foghorn": [sound.create("~/sounds/Foghorn.mp3"), 5100],
     "Alarm": [sound.create("~/sounds/Alarm_Clock.mp3"),21100],
@@ -25,15 +27,36 @@ export class MathGame implements OnInit {
     "Warning": [sound.create("~/sounds/Warning.mp3"),39100]
   };
 
-  constructor(private _router: Router) {}
+  constructor(private _router: Router) {
+    for (var i = 0; i < this._ARRAYMAX; i++) {
+      let randomNumber = Math.floor(Math.random()*this._RANDOMLIMIT) - this._NEGATIVEOFFSET;
+      this._numberArray.push(randomNumber);
+      this._numberStringArray.push(this._formatNumber(randomNumber));
+    }
+    this._numberArray[0] = Math.abs(this._numberArray[0]);
+  }
 
   public get question(): string{
-    return "What is " + this.num1 + "+" + this.num2 + "-" + this.num3 + "-" + this.num4 + "?"
+    return "What is " + this._numberStringArray.join('').slice(1);
+  }
+
+  private _formatNumber(number) {
+    let numberSign = this._isNumberPositive(number) ? '+' : '-';
+    return numberSign + Math.abs(number);
+  }
+
+  private _isNumberPositive(number) {
+    return number && (number / Math.abs(number) === 1)
+  }
+
+  private _sumNumbers() {
+    return this._numberArray.reduce((prev, curr) => prev + curr);
   }
 
   public get message(): string{
-    if (this._answer == (this.num1 + this.num2 - this.num3 - this.num4)) {
-      this.taskPassed = true;
+
+    if (this.answer == this._sumNumbers()) {
+      this._taskPassed = true;
       return "Correct!!"
     } else {
       return "Try again";
@@ -53,15 +76,14 @@ export class MathGame implements OnInit {
   }
 
   ngOnInit() {
-    this.playAlarm();
+    // this.playAlarm();
   }
 
   onTap() {
-    if (this._answer == (this.num1 + this.num2 - this.num3 - this.num4)) {
+    console.log("solution>>" + this._sumNumbers())
+    if (this._taskPassed) {
       this._stopAlarm();
       this._router.navigate([""]);
-    } else {
-      return;
     }
   }
 
