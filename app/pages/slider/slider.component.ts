@@ -1,4 +1,3 @@
-// import observable = require("data/observable");
 import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import { Slider } from "ui/slider";
 import { Router } from "@angular/router";
@@ -50,15 +49,6 @@ export class SliderPage implements OnInit {
          this._router.navigate([""]) }, 500);
     }
   }
-
-  // checkValue(slider1,slider2,slider3,slider4,slider5){
-  //   let args = Array.prototype.slice.call(arguments);
-  //   let values = args.map(function(i){return i.value});
-  //   if (values.every(elem => elem === 10)) {
-  //     this._stopAlarm();
-  //     this._router.navigate([""]);
-  //   };
-  // };
 
   valueChanged(slider) {
     if (slider.value === slider.maxValue) {
