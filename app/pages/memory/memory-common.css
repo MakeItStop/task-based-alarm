@@ -49,4 +49,5 @@ Button {
 
 #endAlarm.taskPassed {
   visibility: visible;
+  font-size: 36;
 }
