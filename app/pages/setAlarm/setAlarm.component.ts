@@ -26,10 +26,8 @@ export class SetAlarmPage {
   }
 
   public selectedIndexChanged(picker) {
-    console.log('picker selection: ' + picker.selectedIndex);
     this._currentTask = taskList[picker.selectedIndex];
     this._currentTask = this._currentTask || "tap";
-    console.log("SELECTION>>>" + this._currentTask);
   }
 
   configureTime(timePicker: TimePicker) {

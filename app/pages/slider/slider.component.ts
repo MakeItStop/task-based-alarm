@@ -45,8 +45,10 @@ export class SliderPage implements OnInit {
   private _taskStop() {
     if (this.sliderCounter === 5) {
       this._stopAlarm();
+
       timer.setTimeout(() => {
-         this._router.navigate([""]) }, 500);
+        this.routeToHome();
+      }, 500);
     }
   }
 
@@ -57,5 +59,9 @@ export class SliderPage implements OnInit {
       this._taskStop();
     }
   }
+
+  routeToHome(){
+    this._router.navigate([""]);
+  };
 
 }
