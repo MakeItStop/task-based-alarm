@@ -21,8 +21,8 @@ describe("Tests for /pages/setAlarm/setAlarm.component.ts", function() {
 
   it("is able to save a set time value", function() {
 
-    spyOn(setAlarmComponent, 'routeToList')
-    
+    spyOn(setAlarmComponent, 'routeToList');
+
     var timePicker = jasmine.createSpyObj('timePicker', ['hour', 'minute']);
     timePicker.hour = 12;
     timePicker.minute = 10;

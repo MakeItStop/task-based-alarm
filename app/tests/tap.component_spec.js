@@ -18,20 +18,14 @@ describe("Tests for /pages/tap/tap.component.ts", function() {
   });
 
   it("Verify completed task message", function(){
-    var n = 16;
-    while (n--){
-      tapComponent.onTap();
-    };
-    expect(tapComponent.message).toBe("You are awake");
-  });
-
-  it("Routes to home after task completion", function(){
     spyOn(tapComponent, 'routeToHome');
     var n = 16;
     while (n--){
       tapComponent.onTap();
-    };
+    }
+    expect(tapComponent.message).toBe("You are awake");
     tapComponent.onTap();
     expect(tapComponent.routeToHome).toHaveBeenCalled();
-  })
-})
+  });
+
+});
