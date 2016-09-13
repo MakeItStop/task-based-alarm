@@ -37,8 +37,8 @@ export class MathGame implements OnInit {
   }
 
   public get question(): string{
-    return "What is " + this._numberStringArray.join('').slice(1);
-  }
+    return "What is " + this._numberStringArray.join('').slice(1) + "?";
+    }
 
   private _formatNumber(number) {
     let numberSign = this._isNumberPositive(number) ? '+' : '-';
@@ -76,7 +76,7 @@ export class MathGame implements OnInit {
   }
 
   ngOnInit() {
-    // this.playAlarm();
+    this.playAlarm();
   }
 
   onTap() {
