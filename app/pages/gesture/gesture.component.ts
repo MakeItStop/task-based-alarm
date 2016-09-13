@@ -30,8 +30,12 @@ export class GesturePage implements OnInit {
     if (this.longPress && this.swipeLeft && this.pinch && this.rotate === true) {
       this._stopAlarm();
       timer.setTimeout(() => {
-         this._router.navigate([""]) }, 500);
+         this.routeToHome() }, 500);
     }
+  }
+
+  routeToHome(){
+    this._router.navigate([""]);
   }
 
   private _success() {
