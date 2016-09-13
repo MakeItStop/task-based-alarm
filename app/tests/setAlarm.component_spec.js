@@ -21,14 +21,16 @@ describe("Tests for /pages/setAlarm/setAlarm.component.ts", function() {
 
   it("is able to save a set time value", function() {
 
-    // var router = jasmine.createSpyObj('setAlarmComponent', ['_router','navigate']);
-    // router._router.navigate(['list'])
-    // var timePicker = jasmine.createSpyObj('timePicker', ['hour', 'minute']);
-    // timePicker.hour = 12;
-    // timePicker.minute = 10;
-    //
-    // setAlarmComponent.saveTime(timePicker);
-    // expect(appSettings.getNumber("hour")).toEqual(12);
-    // expect(appSettings.getNumber("minute")).toEqual(10);
+    spyOn(setAlarmComponent, 'routeToList')
+    
+    var timePicker = jasmine.createSpyObj('timePicker', ['hour', 'minute']);
+    timePicker.hour = 12;
+    timePicker.minute = 10;
+
+    setAlarmComponent.saveTime(timePicker);
+    expect(appSettings.getNumber("hour")).toEqual(12);
+
+    expect(appSettings.getNumber("minute")).toEqual(10);
+    expect(setAlarmComponent.routeToList).toHaveBeenCalled();
   });
 });

@@ -27,7 +27,7 @@ export class SetAlarmPage {
 
   public selectedIndexChanged(picker) {
     console.log('picker selection: ' + picker.selectedIndex);
-    this._currentTask = taskList[picker.selectedIndex]; 
+    this._currentTask = taskList[picker.selectedIndex];
     this._currentTask = this._currentTask || "alarm";
     console.log("SELECTION>>>" + this._currentTask);
   }
@@ -50,6 +50,10 @@ export class SetAlarmPage {
 
     applicationSettings.setNumber("plusDays", this._plusDays);
     applicationSettings.setString("task", this._currentTask);
+    this.routeToList();
+  }
+
+  routeToList() {
     this._router.navigate(["list"]);
   }
 
