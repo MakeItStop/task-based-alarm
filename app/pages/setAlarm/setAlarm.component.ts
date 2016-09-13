@@ -12,9 +12,9 @@ let taskList = ["tap","math-game","slider", "gesture", "memory"]
   selector: "setAlarm",
   templateUrl: "pages/setAlarm/setAlarm.component.html",
 })
+
 export class SetAlarmPage {
-  private _currentTask = "taskholder";
-  private _plusDays = 0;
+  private _currentTask = "";
   public tasks: Array<string>;
 
   constructor(private _router: Router) {
@@ -30,28 +30,42 @@ export class SetAlarmPage {
     this._currentTask = this._currentTask || "tap";
   }
 
-  configureTime(timePicker: TimePicker) {
+
+  public selectedIndexChanged(taskPicker) {
+    this._currentTask = taskList[taskPicker.selectedIndex] || "tap";
+    this._storeString("task", this._currentTask);
+  }
+
+  public configureTime(timePicker: TimePicker) {
     timePicker.hour = applicationSettings.getNumber("hour", 9);
     timePicker.minute = applicationSettings.getNumber("minute", 25);
 
   }
 
-  saveTime(timePicker: TimePicker) {
-    applicationSettings.setNumber("hour", timePicker.hour);
-    applicationSettings.setNumber("minute", timePicker.minute);
-    let selectedTime = moment(timePicker.hour + ':' + timePicker.minute, "HH:mm")
-    if (selectedTime < moment()) {
-      this._plusDays = 1;
-    } else {
-      this._plusDays = 0;
-    }
-
-    applicationSettings.setNumber("plusDays", this._plusDays);
-    applicationSettings.setString("task", this._currentTask);
-    this.routeToList();
+  public saveTime(timePicker: TimePicker) {
+    this._storeNumber("hour", timePicker.hour);
+    this._storeNumber("minute", timePicker.minute);
+    this._storeNumber("plusDays", this._plusDays(timePicker));
+    this._routeToList();
   }
 
-  routeToList() {
+  private _plusDays(timePicker) {
+    let selectedTime = moment(timePicker.hour + ':' + timePicker.minute, "HH:mm");
+    return this._isSelectedTimeTomorrow(selectedTime) ? 1 : 0;
+  }
+
+  private _isSelectedTimeTomorrow(selectedTime) {
+    return selectedTime < moment()
+  }
+
+  private _storeNumber(attribute, value) {
+    applicationSettings.setNumber(attribute, value);
+  }
+  private _storeString(attribute, value) {
+    applicationSettings.setString(attribute, value);
+  }
+
+  private _routeToList() {
     this._router.navigate(["list"]);
   }
 
