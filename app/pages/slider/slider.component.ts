@@ -13,11 +13,7 @@ let timer = require('timer');
 })
 
 export class SliderPage implements OnInit {
-  private slider1 = false;
-  private slider2 = false;
-  private slider3 = false;
-  private slider4 = false;
-  private slider5 = false;
+  private sliderCounter: number = 0;
   private alarmLooper = {};
   private sounds: any = {
     "Foghorn": [sound.create("~/sounds/Foghorn.mp3"), 5100],
@@ -29,6 +25,9 @@ export class SliderPage implements OnInit {
 
   constructor(private _router: Router) {}
 
+  ngOnInit() {
+    this.playAlarm();
+  }
 
   public playAlarm() {
     // let alarmArray = Object.keys(this.sounds)
@@ -45,29 +44,28 @@ export class SliderPage implements OnInit {
   }
 
   private _taskStop() {
-    if (this.slider1 && this.slider2 && this.slider3 && this.slider4 && this.slider5 === true) {
+    if (this.sliderCounter === 5) {
       this._stopAlarm();
       timer.setTimeout(() => {
          this._router.navigate([""]) }, 500);
     }
   }
 
-  ngOnInit() {
-    this.playAlarm();
-  }
-
-  checkValue(slider1,slider2,slider3,slider4,slider5){
-    let args = Array.prototype.slice.call(arguments);
-    let values = args.map(function(i){return i.value});
-    if (values.every(elem => elem === 10)) {
-      this._stopAlarm();
-      this._router.navigate([""]);
-    };
-  };
+  // checkValue(slider1,slider2,slider3,slider4,slider5){
+  //   let args = Array.prototype.slice.call(arguments);
+  //   let values = args.map(function(i){return i.value});
+  //   if (values.every(elem => elem === 10)) {
+  //     this._stopAlarm();
+  //     this._router.navigate([""]);
+  //   };
+  // };
 
   valueChanged(slider) {
-    console.log("Property Changed!");
-    console.log(slider.value);
+    if (slider.value === slider.maxValue) {
+      slider.isUserInteractionEnabled = false;
+      this.sliderCounter++;
+      this._taskStop();
+    }
   }
 
 }
