@@ -1,11 +1,11 @@
 var reflect = require("reflect-metadata");
-var component = require("../pages/slide/slide.component");
+var component = require("../pages/slider/slider.component");
 
-describe("Tests for /pages/slide/slide.component.ts", function() {
+describe("Tests for /pages/slider/slider.component.ts", function() {
 
-  var slideComponent;
+  var sliderComponent;
   beforeEach(function() {
-     slideComponent = new component.SlidePage();
+     sliderComponent = new component.SliderPage();
   });
 //
 //   it("Verify default slider value", function() {

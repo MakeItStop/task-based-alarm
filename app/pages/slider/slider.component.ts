@@ -7,11 +7,11 @@ let timer = require('timer');
 
 @Component({
   selector: "slide",
-  templateUrl: "pages/slide/slide.component.html",
-  styleUrls: ["pages/slide/slide.component.css"]
+  templateUrl: "pages/slider/slider.component.html",
+  styleUrls: ["pages/slider/slider.component.css"]
 })
 
-export class SlidePage implements OnInit {
+export class SliderPage implements OnInit {
   private alarmLooper = {};
   private sounds: any = {
     "Foghorn": [sound.create("~/sounds/Foghorn.mp3"), 5100],
