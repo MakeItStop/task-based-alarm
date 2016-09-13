@@ -5,10 +5,10 @@ let sound = require("nativescript-sound");
 let timer = require('timer');
 
 @Component({
-    selector: "alarm",
-    templateUrl: "pages/alarm/alarm.component.html"
+    selector: "tap",
+    templateUrl: "pages/tap/tap.component.html"
 })
-export class AlarmPage implements OnInit {
+export class TapPage implements OnInit {
   public counter: number = 16;
   private taskPassed = false;
   private alarmLooper = {};
@@ -54,8 +54,13 @@ export class AlarmPage implements OnInit {
       this.counter--;
     } else {
       this._stopAlarm();
-      this._router.navigate([""]);
+      console.log("Routing")
+      this.routeToHome();
     }
+  }
+
+  routeToHome() {
+    this._router.navigate([""]);
   }
 
 }

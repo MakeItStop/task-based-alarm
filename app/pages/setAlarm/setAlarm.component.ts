@@ -6,7 +6,7 @@ import { Router } from "@angular/router";
 import * as moment from "moment";
 import { Page } from "ui/page";
 
-let taskList = ["alarm","math-game","slide", "gesture", "memory"]
+let taskList = ["tap","math-game","slide", "gesture", "memory"]
 
 @Component({
   selector: "setAlarm",
@@ -24,8 +24,9 @@ export class SetAlarmPage {
     }
   }
 
+
   public selectedIndexChanged(taskPicker) {
-    this._currentTask = taskList[taskPicker.selectedIndex] || "alarm";
+    this._currentTask = taskList[taskPicker.selectedIndex] || "tap";
     this._storeString("task", this._currentTask);
   }
 
