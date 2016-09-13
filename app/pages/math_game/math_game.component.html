@@ -1,11 +1,11 @@
 <ActionBar title="Alarm">
 </ActionBar>
 <StackLayout>
-    <Label [text]="question" class="title"></Label>
+    <Label [text]="question" class="title" textWrap="true"></Label>
 
-    <TextField hint="Enter number" [(ngModel)]="math"></TextField>
+    <TextField hint="Enter number" [(ngModel)]="answer"></TextField>
 
-    <Button text="TAP" (tap)="onTap()"></Button>
+    <Button text="Submit" (tap)="onTap()"></Button>
 
     <Label [text]="message" class="message" textWrap="true"></Label>
 </StackLayout>
