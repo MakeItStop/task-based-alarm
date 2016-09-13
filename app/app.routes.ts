@@ -5,7 +5,7 @@ import {TapPage} from "./pages/tap/tap.component";
 import {MathGame} from "./pages/math_game/math_game.component";
 import {ListPage} from "./pages/list/list.component";
 import {SliderPage} from "./pages/slider/slider.component";
-import {GesturePage} from "./pages/gesture_task/gesture.component";
+import {GesturePage} from "./pages/gesture/gesture.component";
 import {MemoryPage} from "./pages/memory/memory.component";
 
 export const routes: RouterConfig = [
