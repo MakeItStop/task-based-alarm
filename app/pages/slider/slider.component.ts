@@ -13,6 +13,11 @@ let timer = require('timer');
 })
 
 export class SliderPage implements OnInit {
+  private slider1 = false;
+  private slider2 = false;
+  private slider3 = false;
+  private slider4 = false;
+  private slider5 = false;
   private alarmLooper = {};
   private sounds: any = {
     "Foghorn": [sound.create("~/sounds/Foghorn.mp3"), 5100],
@@ -39,6 +44,14 @@ export class SliderPage implements OnInit {
     timer.clearInterval(this.alarmLooper);
   }
 
+  private _taskStop() {
+    if (this.slider1 && this.slider2 && this.slider3 && this.slider4 && this.slider5 === true) {
+      this._stopAlarm();
+      timer.setTimeout(() => {
+         this._router.navigate([""]) }, 500);
+    }
+  }
+
   ngOnInit() {
     this.playAlarm();
   }
@@ -52,8 +65,9 @@ export class SliderPage implements OnInit {
     };
   };
 
-  valueChanged() {
+  valueChanged(slider) {
     console.log("Property Changed!");
+    console.log(slider.value);
   }
 
 }
