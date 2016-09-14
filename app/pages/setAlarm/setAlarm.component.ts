@@ -19,7 +19,6 @@ export class SetAlarmPage {
 
   constructor(private _router: Router) {
     this.tasks = [];
-
     for (let i = 0; i < taskList.length; i++) {
       this.tasks.push(taskList[i]);
     }

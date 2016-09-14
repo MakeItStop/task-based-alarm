@@ -40,7 +40,7 @@ export class MemoryPage implements OnInit {
   }
 
   ngOnInit() {
-    this.playAlarm();
+    // this.playAlarm();
   }
 
   onTap() {
@@ -53,33 +53,50 @@ export class MemoryPage implements OnInit {
   }
 
   chooseTile(tile) {
+    this._addToSelectedTiles(tile);
+    if (this._twoTilesFlipped()) {
+      this._matchTile();
+    }
+  }
+
+  private _addToSelectedTiles(tile) {
     this.selectedTiles.push(tile);
-    if (this.selectedTiles.length % 2 === 0) {
-      this.matchTile();
+  }
+
+  private _twoTilesFlipped() {
+    return this._getTilesLength() % 2 === 0;
+  }
+
+  private _matchTile() {
+    this._doesIdMatch() ? this._setTaskAsComplete() : this._resetUnmatchedTiles();
+  }
+
+  private _setTaskAsComplete() {
+    if (this._allTilesMatched()) {
+      this.taskPassed = true;
     }
   }
 
-  matchTile() {
-    if (this.doesIdMatch()) {
-      if (this.allTilesMatched()) {
-        this.taskPassed = true;
-      }
-    }
-    else {
-      timer.setTimeout(() => {
-        this.selectedTiles.splice(-2,2);
-      }, 500);
-    }
+  private _resetUnmatchedTiles() {
+    timer.setTimeout(() => {
+      this.selectedTiles.splice(-2,2);
+    }, 500);
   }
 
-  doesIdMatch(){
-    let tilesLength = this.selectedTiles.length;
-    return (this.selectedTiles[tilesLength - 1].id === this.selectedTiles[tilesLength - 2].id);
+  private _doesIdMatch(){
+    return (this._getTileElement(-1).id === this._getTileElement(-2).id);
   }
 
-  allTilesMatched(){
-    let tilesLength = this.selectedTiles.length;
-    return tilesLength === 24;
+  private _allTilesMatched(){
+    return this._getTilesLength() === 24;
+  }
+
+  private _getTilesLength() {
+    return this.selectedTiles.length;
+  }
+
+  private _getTileElement(index) {
+    return this.selectedTiles[this._getTilesLength() + index];
   }
 
 
