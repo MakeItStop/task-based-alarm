@@ -33,6 +33,12 @@ export class SettingsPage {
     }
   }
 
+  public randomTask(picker: ListPicker) {
+    let randomIndex = Math.floor(Math.random() * picker.items.length);
+    console.log("RANDOM" + randomIndex);
+    picker.selectedIndex = randomIndex;
+  }
+
   public configureTask(picker: ListPicker) {
     picker.selectedIndex = picker.items.indexOf(this.savedTask)
   }

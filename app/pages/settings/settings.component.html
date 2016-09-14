@@ -13,15 +13,17 @@
     (selectedIndexChange)="selectedIndexChanged(picker)">
   </ListPicker>
 
+  <Button row="2" text="Random" (tap)="randomTask(picker)"></Button>
+
   <ListPicker #soundPicker
     (loaded) = "configureSound(soundPicker)"
     class="picker"
-    row="2"
+    row="3"
     [items]="sounds"
     [selectedIndex]="selectedIndex"
     (selectedIndexChange)="selectedSoundIndexChanged(soundPicker)">
   </ListPicker>
 
-  <Button row="3" text="Save settings" (tap)="saveSettings()"></Button>
+  <Button row="4" text="Save settings" (tap)="saveSettings()"></Button>
 
 </StackLayout>
