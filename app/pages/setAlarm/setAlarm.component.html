@@ -6,13 +6,7 @@
 
   <timePicker class="picker" #timePicker (loaded)="configureTime(timePicker)" verticalAlignment="center" row="1"></timePicker>
 
-  <ListPicker #picker
-      class="picker"
-      row="2"
-      [items]="tasks"
-      [selectedIndex]="selectedIndex"
-      (selectedIndexChange)="selectedIndexChanged(picker)">
-  </ListPicker>
+  <Button row="2" text="Settings" (tap)="routeToSettings()"></Button>
 
   <Button row="3" text="Set Alarm" (tap)="saveTime(timePicker)"></Button>
 
