@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { Tile } from "../../shared/tile/tile"
 import { SoundService } from "../../shared/soundService";
+import * as applicationSettings from "application-settings";
 
 let timer = require('timer');
-let COLORS = ["yellow", "yellow","red","red","purple","purple",
-              "pink","pink","blue","blue","orange","orange",
-              "silver","silver","green","green","brown","brown",
-              "snotGreen","snotGreen","black","black","beige","beige"]
+let COLORS = ["yellow","red","purple",
+              "pink","blue","orange",
+              "silver","green","brown",
+              "snotGreen","black","beige"]
 
 @Component({
   selector: "memory",
@@ -20,11 +21,21 @@ export class MemoryPage implements OnInit {
   public taskPassed = false;
   public selectedTiles = [];
   public tiles: Array<Tile> = [];
-  private _maxTiles = 24;
-  private _maxColumns = Math.floor(this._maxTiles/4);
+  private _maxTiles = this._getDifficulty();
+  private _maxColumns = Math.ceil(this._maxTiles/6);
   private _maxRows = this._maxTiles/this._maxColumns
   public displayColumns = this._multiply(['*'], this._maxColumns);
   public displayRows = this._multiply(['*'], this._maxRows);
+
+  private _getDifficulty() {
+    let difficulty = applicationSettings.getNumber("memoryDifficulty", 8);
+    console.log(difficulty);
+
+    this._multiply(COLORS, Math.ceil(difficulty/COLORS.length));
+
+    return difficulty*2;
+
+  }
 
   private _multiply(array, multiple) {
     let limit = array.length*(multiple-1);
@@ -35,7 +46,8 @@ export class MemoryPage implements OnInit {
   }
 
   constructor(private _router: Router, private _soundModule: SoundService) {
-    let colors = COLORS.slice(0, this._maxTiles)
+    let colors = COLORS.slice(0, this._maxTiles/2)
+    this._multiply(colors, 2)
     this._shuffle(colors);
     for (var tileIndex = 0; tileIndex < this._maxTiles; tileIndex++) {
       this._createTile(tileIndex, colors);
