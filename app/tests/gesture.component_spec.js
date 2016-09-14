@@ -6,6 +6,7 @@ describe("Tests for /pages/gesture/gesture.component.ts", function() {
   var gestureComponent;
   beforeEach(function() {
     gestureComponent = new component.GesturePage();
+
   });
 
   it("Verifies default messages", function() {
@@ -45,11 +46,12 @@ describe("Tests for /pages/gesture/gesture.component.ts", function() {
 
   it("Completes the task", function() {
     spyOn(gestureComponent, 'routeToHome');
+    spyOn(gestureComponent, 'alarmOff')
     gestureComponent.longPress = true;
     gestureComponent.swipeLeft = true;
     gestureComponent.pinch = true;
     gestureComponent.rotate = true;
-    expect(gestureComponent._stopAlarm()).toHaveBeenCalled;
+    expect(gestureComponent.alarmOff).toHaveBeenCalled;
     expect(gestureComponent.routeToHome).toHaveBeenCalled;
   });
 

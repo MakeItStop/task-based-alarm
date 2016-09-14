@@ -23,7 +23,7 @@ export class SliderPage implements OnInit {
 
   private _taskStop() {
     if (this.sliderCounter === 5) {
-      this._soundModule.stopAlarm();
+      this.alarmOff();
 
       timer.setTimeout(() => {
         this.routeToHome();
@@ -37,6 +37,10 @@ export class SliderPage implements OnInit {
       this.sliderCounter++;
       this._taskStop();
     }
+  }
+
+  alarmOff() {
+    this._soundModule.stopAlarm();
   }
 
   routeToHome(){

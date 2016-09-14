@@ -6,7 +6,6 @@ describe("Tests for /pages/slider/slider.component.ts", function() {
   var sliderComponent;
   beforeEach(function() {
      sliderComponent = new component.SliderPage();
-
   });
 
   it("Counter begins at 0", function() {
@@ -33,9 +32,10 @@ describe("Tests for /pages/slider/slider.component.ts", function() {
 
   it("Task is complete with all sliders maxed out", function() {
     spyOn(sliderComponent, 'routeToHome');
+    spyOn(sliderComponent, 'alarmOff');
     sliderComponent.sliderCounter = 5;
     sliderComponent._taskStop();
-    expect(sliderComponent._stopAlarm()).toHaveBeenCalled;
+    expect(sliderComponent.alarmOff).toHaveBeenCalled;
     expect(sliderComponent.routeToHome).toHaveBeenCalled;
   });
 
