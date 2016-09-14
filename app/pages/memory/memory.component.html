@@ -1,6 +1,6 @@
 <StackLayout>
   <Button [text]="taskPassed ? 'Make It Stop!' : 'Test Your Memory'" (tap)="onTap()" id="title"></Button>
-  <GridLayout rows="*,*,*,*" columns="*,*,*">
+  <GridLayout [rows]="displayRows.join()" [columns]="displayColumns.join()">
       <Button *ngFor="let tile of tiles" [row]='tile.row' [col]='tile.col' (tap)="chooseTile(tile)" [class.selected]="selectedTiles.includes(tile)" [id]="tile.id"></Button>
   </GridLayout>
 </StackLayout>

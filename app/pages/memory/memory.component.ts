@@ -22,9 +22,19 @@ export class MemoryPage implements OnInit {
   private alarmLooper = {};
   public selectedTiles = [];
   public tiles: Array<Tile> = [];
-  private _MAXTILES = 12;
-  private _maxColumns = 3;
+  private _maxTiles = 24;
+  private _maxColumns = Math.floor(this._maxTiles/4);
+  private _maxRows = this._maxTiles/this._maxColumns
+  public displayColumns = this._multiply(['*'], this._maxColumns);
+  public displayRows = this._multiply(['*'], this._maxRows);
 
+  private _multiply(array, multiple) {
+    let limit = array.length*(multiple-1);
+    for (var i = 0; i<limit; i++) {
+      array.push(array[i]);
+    }
+    return array;
+  }
 
   private sounds: any = {
     "Foghorn": sound.create("~/sounds/Foghorn.mp3"),
@@ -35,13 +45,12 @@ export class MemoryPage implements OnInit {
   };
 
   constructor(private _router: Router) {
-    let colors = COLORS.slice(0, this._MAXTILES)
+    let colors = COLORS.slice(0, this._maxTiles)
     this._shuffle(colors);
-    for (var tileIndex = 0; tileIndex < this._MAXTILES; tileIndex++) {
+    for (var tileIndex = 0; tileIndex < this._maxTiles; tileIndex++) {
       this._createTile(tileIndex, colors);
     }
     for (var tile = 0; tile < this.tiles.length; tile++){
-      console.log(this.tiles[tile].id);
     }
   }
 
@@ -126,7 +135,7 @@ export class MemoryPage implements OnInit {
   }
 
   private _allTilesMatched(){
-    return this._getTilesLength() === this._MAXTILES;
+    return this._getTilesLength() === this._maxTiles;
   }
 
   private _getTilesLength() {
