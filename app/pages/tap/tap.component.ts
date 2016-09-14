@@ -31,9 +31,13 @@ export class TapPage implements OnInit {
     if (!this.taskPassed) {
       this.counter--;
     } else {
-      this._soundModule.stopAlarm();
+      this.alarmOff()
       this.routeToHome();
     }
+  }
+
+  alarmOff() {
+    this._soundModule.stopAlarm();
   }
 
   routeToHome() {

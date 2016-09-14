@@ -21,7 +21,7 @@ export class GesturePage implements OnInit {
 
   private _taskStop() {
     if (this.longPress && this.swipeLeft && this.pinch && this.rotate === true) {
-      this._soundModule.stopAlarm();
+      this.alarmOff();
       timer.setTimeout(() => {
          this.routeToHome() }, 500);
     }
@@ -93,5 +93,9 @@ export class GesturePage implements OnInit {
       this.rotate = true;
       this._taskStop()
     }
+  }
+
+  alarmOff() {
+    this._soundModule.stopAlarm();
   }
 }
