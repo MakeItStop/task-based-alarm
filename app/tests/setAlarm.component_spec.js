@@ -59,17 +59,5 @@ describe("Tests for /pages/setAlarm/setAlarm.component.ts", function() {
     });
   });
 
-  describe("#selectedIndexChanged()", function() {
-    var taskPicker;
-    beforeEach(function() {
-      taskPicker = jasmine.createSpyObj('taskPicker', ['selectedIndex']);
-      taskPicker.selectedIndex = 1;
-    });
-
-    it("is able to save a set task value", function() {
-
-      setAlarmComponent.selectedIndexChanged(taskPicker);
-      expect(appSettings.getString("task")).toEqual("math-game");
-    });
-  });
+  
 });

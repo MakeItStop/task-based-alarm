@@ -1,0 +1,17 @@
+<ActionBar title="Setting">
+</ActionBar>
+<StackLayout>
+
+  <Label text="Choose a task" class="title" row="0"></Label>
+
+  <ListPicker #picker
+      class="picker"
+      row="1"
+      [items]="tasks"
+      [selectedIndex]="selectedIndex"
+      (selectedIndexChange)="selectedIndexChanged(picker)">
+  </ListPicker>
+
+  <Button row="2" text="Save settings" (tap)="saveSettings()"></Button>
+
+</StackLayout>
