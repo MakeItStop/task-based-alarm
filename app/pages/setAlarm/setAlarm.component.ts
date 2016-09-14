@@ -12,7 +12,11 @@ import { Page } from "ui/page";
 
 export class SetAlarmPage {
 
-  constructor(private _router: Router) {}
+  constructor(private _router: Router) {
+    if (applicationSettings.getString("task") === "") {
+      applicationSettings.setString("task", "tap");
+    }
+  }
 
   public configureTime(timePicker: TimePicker) {
     timePicker.hour = applicationSettings.getNumber("hour", 9);
