@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from "@angular/router";
+// import { AutoGridRows, AutoGridColumns } from "./../../utils/grid.directive";
 let sound = require("nativescript-sound");
 let timer = require('timer');
 
@@ -7,14 +8,18 @@ let timer = require('timer');
 @Component({
   selector: "memory",
   templateUrl: "pages/memory/memory.component.html",
-  styleUrls: ["pages/memory/memory-common.css"]
-
+  styleUrls: ["pages/memory/memory-common.css"],
+  // directives: [NgFor]
 })
 
 export class MemoryPage implements OnInit {
   public taskPassed = false;
   private alarmLooper = {};
   public selectedTiles = [];
+  public rows;
+  public cols;
+  public autoCreateColumns = 2;
+  public autoCreateRows = 2;
 
   private sounds: any = {
     "Foghorn": sound.create("~/sounds/Foghorn.mp3"),
@@ -24,7 +29,11 @@ export class MemoryPage implements OnInit {
     "Warning": sound.create("~/sounds/Warning.mp3"),
   };
 
-  constructor(private _router: Router) {}
+  constructor(private _router: Router) {
+    this.rows = [0,1];
+    this.cols = [0,1];
+  }
+
   public playAlarm() {
     // let alarmArray = Object.keys(this.sounds)
     // let randomAlarm = alarmArray[Math.floor(Math.random() * alarmArray.length)]
@@ -98,6 +107,5 @@ export class MemoryPage implements OnInit {
   private _getTileElement(index) {
     return this.selectedTiles[this._getTilesLength() + index];
   }
-
 
 }

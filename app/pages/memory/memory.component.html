@@ -1,8 +1,18 @@
 <StackLayout>
   <Label text="Test Your Memory" class="title"></Label>
 
+  <GridLayout rows="60,60" columns="60,60">
+    <template ngFor let-row [ngForOf]="rows">
+      <template ngFor let-col [ngForOf]="cols">
+        <Button id="red" [class.selected]="selectedTiles.includes(one)" (tap)="chooseTile(one)" >
+        </Button>
+      </template>
+    </template>
+  </GridLayout>
 
-  <GridLayout rows="60,60,60,60,60,60,auto" columns="60,60,60,60" horizontalAlignment="center" verticalAlignment="center">
+  <!-- <GridLayout rows="60,60,60,60,60,60,auto" columns="60,60,60,60" horizontalAlignment="center" verticalAlignment="center">
+
+
     <Button #one id="red" [class.selected]="selectedTiles.includes(one)" row="0" col="0"
      (tap)="chooseTile(one)" ></Button>
 
@@ -83,5 +93,6 @@
 
 
     <Label id="endAlarm" text="End Alarm" (tap)="onTap()" row="6" colSpan="4" horizontalAlignment="center" [class.taskPassed]="taskPassed"></Label>
-  </GridLayout>
+
+  </GridLayout> -->
 </StackLayout>
