@@ -4,6 +4,10 @@ Button {
   margin: 2;
 }
 
+#title {
+  background-color: transparent;
+}
+
 #purple.selected {
   background-color: purple;
 }

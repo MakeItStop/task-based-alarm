@@ -1,25 +1,30 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-// import { AutoGridRows, AutoGridColumns } from "./../../utils/grid.directive";
+import { Tile } from "../../shared/tile/tile"
+// import { GridLayout } from "ui/layouts/grid-layout";
+// import { Observable, Subscription, Subject } from 'rxjs/Rx';
+// // import { AutoGridRows, AutoGridColumns } from "./../../utils/grid.directive";
 let sound = require("nativescript-sound");
 let timer = require('timer');
-
+let COLORS = ["yellow", "yellow","red","red","purple","purple",
+              "pink","pink","blue","blue","orange","orange",
+              "silver","silver","green","green","brown","brown",
+              "snotGreen","snotGreen","black","black","beige","beige"]
 
 @Component({
   selector: "memory",
   templateUrl: "pages/memory/memory.component.html",
-  styleUrls: ["pages/memory/memory-common.css"],
-  // directives: [NgFor]
+  styleUrls: ["pages/memory/memory-common.css"]
 })
 
 export class MemoryPage implements OnInit {
   public taskPassed = false;
   private alarmLooper = {};
   public selectedTiles = [];
-  public rows;
-  public cols;
-  public autoCreateColumns = 2;
-  public autoCreateRows = 2;
+  public tiles: Array<Tile> = [];
+  private _MAXTILES = 12;
+  private _maxColumns = 3;
+
 
   private sounds: any = {
     "Foghorn": sound.create("~/sounds/Foghorn.mp3"),
@@ -30,13 +35,25 @@ export class MemoryPage implements OnInit {
   };
 
   constructor(private _router: Router) {
-    this.rows = [0,1];
-    this.cols = [0,1];
+    let colors = COLORS.slice(0, this._MAXTILES)
+    this._shuffle(colors);
+    for (var tileIndex = 0; tileIndex < this._MAXTILES; tileIndex++) {
+      this._createTile(tileIndex, colors);
+    }
+    for (var tile = 0; tile < this.tiles.length; tile++){
+      console.log(this.tiles[tile].id);
+    }
   }
 
+  private _createTile(index, colors) {
+    let tile = new Tile();
+    tile.col = index%this._maxColumns;
+    tile.row = Math.floor(index/this._maxColumns);
+    // tile.id = COLORS[Math.floor(index/2)];
+    tile.id = colors[index];
+    this.tiles.push(tile);
+  }
   public playAlarm() {
-    // let alarmArray = Object.keys(this.sounds)
-    // let randomAlarm = alarmArray[Math.floor(Math.random() * alarmArray.length)]
     this.sounds["Foghorn"].play();
     this.alarmLooper = timer.setInterval(() => {
       this.sounds["Foghorn"].play();
@@ -55,9 +72,21 @@ export class MemoryPage implements OnInit {
   onTap() {
     if (this.taskPassed) {
       this._stopAlarm();
-      this._router.navigate([""]);
+      this._routeToIndex();
     } else {
-      return;
+      alert("Complete the task first!")
+    }
+  }
+
+  private _routeToIndex() {
+    this._router.navigate([""]);
+  }
+
+  public get headerMessage() : string {
+    if (!this.taskPassed) {
+      return "Test Your Memory";
+    } else {
+      return "Success!!";
     }
   }
 
@@ -97,7 +126,7 @@ export class MemoryPage implements OnInit {
   }
 
   private _allTilesMatched(){
-    return this._getTilesLength() === 24;
+    return this._getTilesLength() === this._MAXTILES;
   }
 
   private _getTilesLength() {
@@ -106,6 +135,19 @@ export class MemoryPage implements OnInit {
 
   private _getTileElement(index) {
     return this.selectedTiles[this._getTilesLength() + index];
+  }
+
+  private _shuffle(array) {
+    let i = 0;
+    let j = 0;
+    let temp = null;
+
+    for (i = array.length -1; i > 0; i -= 1) {
+      j = Math.floor(Math.random() * (i + 1));
+      temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
   }
 
 }
