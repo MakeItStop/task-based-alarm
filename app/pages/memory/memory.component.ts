@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from "@angular/router";
+import * as applicationSettings from "application-settings";
 let sound = require("nativescript-sound");
 let timer = require('timer');
 
@@ -15,6 +16,7 @@ export class MemoryPage implements OnInit {
   public taskPassed = false;
   private alarmLooper = {};
   public selectedTiles = [];
+  private currentSound = applicationSettings.getString("sound");
 
   private sounds: any = {
     "Foghorn": sound.create("~/sounds/Foghorn.mp3"),
@@ -28,14 +30,14 @@ export class MemoryPage implements OnInit {
   public playAlarm() {
     // let alarmArray = Object.keys(this.sounds)
     // let randomAlarm = alarmArray[Math.floor(Math.random() * alarmArray.length)]
-    this.sounds["Foghorn"].play();
+    this.sounds[this.currentSound].play();
     this.alarmLooper = timer.setInterval(() => {
-      this.sounds["Foghorn"].play();
+      this.sounds[this.currentSound].play();
     }, 5000);
   }
 
   private _stopAlarm() {
-    this.sounds["Foghorn"].stop();
+    this.sounds[this.currentSound].stop();
     timer.clearInterval(this.alarmLooper);
   }
 
