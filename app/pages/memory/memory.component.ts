@@ -1,53 +1,30 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from "@angular/router";
-import * as applicationSettings from "application-settings";
-let sound = require("nativescript-sound");
+import { SoundService } from "../../shared/soundService";
 let timer = require('timer');
 
 
 @Component({
   selector: "memory",
   templateUrl: "pages/memory/memory.component.html",
-  styleUrls: ["pages/memory/memory-common.css"]
-
+  styleUrls: ["pages/memory/memory-common.css"],
+  providers: [SoundService]
 })
 
 export class MemoryPage implements OnInit {
   public taskPassed = false;
-  private alarmLooper = {};
   public selectedTiles = [];
-  private currentSound = applicationSettings.getString("sound");
 
-  private sounds: any = {
-    "Foghorn": sound.create("~/sounds/Foghorn.mp3"),
-    "Alarm": sound.create("~/sounds/Alarm_Clock.mp3"),
-    "Bomb_Siren": sound.create("~/sounds/Bomb_Siren.mp3"),
-    "Railroad": sound.create("~/sounds/Railroad.mp3"),
-    "Warning": sound.create("~/sounds/Warning.mp3"),
-  };
 
-  constructor(private _router: Router) {}
-  public playAlarm() {
-    // let alarmArray = Object.keys(this.sounds)
-    // let randomAlarm = alarmArray[Math.floor(Math.random() * alarmArray.length)]
-    this.sounds[this.currentSound].play();
-    this.alarmLooper = timer.setInterval(() => {
-      this.sounds[this.currentSound].play();
-    }, 5000);
-  }
-
-  private _stopAlarm() {
-    this.sounds[this.currentSound].stop();
-    timer.clearInterval(this.alarmLooper);
-  }
+  constructor(private _router: Router, private _soundModule: SoundService) {}
 
   ngOnInit() {
-    this.playAlarm();
+    this._soundModule.playAlarm();
   }
 
   onTap() {
     if (this.taskPassed) {
-      this._stopAlarm();
+      this._soundModule.stopAlarm();
       this._router.navigate([""]);
     } else {
       return;
