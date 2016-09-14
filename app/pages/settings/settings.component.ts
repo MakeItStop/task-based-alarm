@@ -14,6 +14,8 @@ let taskList = ["tap","math-game","slider", "gesture", "memory"]
 export class SettingsPage {
   private _currentTask = "";
   public tasks: Array<string>;
+  public savedTask = applicationSettings.getString("task")
+
 
   constructor(private _router: Router) {
     this.tasks = [];
@@ -21,6 +23,10 @@ export class SettingsPage {
     for (let i = 0; i < taskList.length; i++) {
       this.tasks.push(taskList[i]);
     }
+  }
+
+  public configureTask(picker: ListPicker) {
+    picker.selectedIndex = picker.items.indexOf(this.savedTask)
   }
 
   public selectedIndexChanged(taskPicker) {

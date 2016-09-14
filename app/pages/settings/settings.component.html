@@ -5,6 +5,7 @@
   <Label text="Choose a task" class="title" row="0"></Label>
 
   <ListPicker #picker
+      (loaded) = "configureTask(picker)"
       class="picker"
       row="1"
       [items]="tasks"
