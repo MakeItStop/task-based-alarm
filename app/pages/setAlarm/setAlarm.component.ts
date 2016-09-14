@@ -1,12 +1,9 @@
 import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import { TimePicker } from "ui/time-picker";
-import { ListPicker } from "ui/list-picker";
 import * as applicationSettings from "application-settings";
 import { Router } from "@angular/router";
 import * as moment from "moment";
 import { Page } from "ui/page";
-
-let taskList = ["tap","math-game","slider", "gesture", "memory"]
 
 @Component({
   selector: "setAlarm",
@@ -14,19 +11,12 @@ let taskList = ["tap","math-game","slider", "gesture", "memory"]
 })
 
 export class SetAlarmPage {
-  private _currentTask = "";
-  public tasks: Array<string>;
 
   constructor(private _router: Router) {
-    this.tasks = [];
-    for (let i = 0; i < taskList.length; i++) {
-      this.tasks.push(taskList[i]);
-    }
-  }
 
-  public selectedIndexChanged(taskPicker) {
-    this._currentTask = taskList[taskPicker.selectedIndex] || "tap";
-    this._storeString("task", this._currentTask);
+    if (applicationSettings.getString("task") === "") {
+      applicationSettings.setString("task", "tap");
+    }
   }
 
   public configureTime(timePicker: TimePicker) {
@@ -54,12 +44,14 @@ export class SetAlarmPage {
   private _storeNumber(attribute, value) {
     applicationSettings.setNumber(attribute, value);
   }
-  private _storeString(attribute, value) {
-    applicationSettings.setString(attribute, value);
-  }
+
 
   private _routeToList() {
     this._router.navigate(["list"]);
+  }
+
+  public routeToSettings() {
+    this._router.navigate(["settings"])
   }
 
 }

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { Tile } from "../../shared/tile/tile"
-// import { GridLayout } from "ui/layouts/grid-layout";
-// import { Observable, Subscription, Subject } from 'rxjs/Rx';
-// // import { AutoGridRows, AutoGridColumns } from "./../../utils/grid.directive";
-let sound = require("nativescript-sound");
+import { SoundService } from "../../shared/soundService";
+
 let timer = require('timer');
 let COLORS = ["yellow", "yellow","red","red","purple","purple",
               "pink","pink","blue","blue","orange","orange",
@@ -14,12 +12,12 @@ let COLORS = ["yellow", "yellow","red","red","purple","purple",
 @Component({
   selector: "memory",
   templateUrl: "pages/memory/memory.component.html",
-  styleUrls: ["pages/memory/memory-common.css"]
+  styleUrls: ["pages/memory/memory-common.css"],
+  providers: [SoundService]
 })
 
 export class MemoryPage implements OnInit {
   public taskPassed = false;
-  private alarmLooper = {};
   public selectedTiles = [];
   public tiles: Array<Tile> = [];
   private _maxTiles = 24;
@@ -36,15 +34,7 @@ export class MemoryPage implements OnInit {
     return array;
   }
 
-  private sounds: any = {
-    "Foghorn": sound.create("~/sounds/Foghorn.mp3"),
-    "Alarm": sound.create("~/sounds/Alarm_Clock.mp3"),
-    "Bomb_Siren": sound.create("~/sounds/Bomb_Siren.mp3"),
-    "Railroad": sound.create("~/sounds/Railroad.mp3"),
-    "Warning": sound.create("~/sounds/Warning.mp3"),
-  };
-
-  constructor(private _router: Router) {
+  constructor(private _router: Router, private _soundModule: SoundService) {
     let colors = COLORS.slice(0, this._maxTiles)
     this._shuffle(colors);
     for (var tileIndex = 0; tileIndex < this._maxTiles; tileIndex++) {
@@ -58,29 +48,17 @@ export class MemoryPage implements OnInit {
     let tile = new Tile();
     tile.col = index%this._maxColumns;
     tile.row = Math.floor(index/this._maxColumns);
-    // tile.id = COLORS[Math.floor(index/2)];
     tile.id = colors[index];
     this.tiles.push(tile);
   }
-  public playAlarm() {
-    this.sounds["Foghorn"].play();
-    this.alarmLooper = timer.setInterval(() => {
-      this.sounds["Foghorn"].play();
-    }, 5000);
-  }
-
-  private _stopAlarm() {
-    this.sounds["Foghorn"].stop();
-    timer.clearInterval(this.alarmLooper);
-  }
 
   ngOnInit() {
-    // this.playAlarm();
+    this._soundModule.playAlarm();
   }
 
   onTap() {
     if (this.taskPassed) {
-      this._stopAlarm();
+      this._soundModule.stopAlarm();
       this._routeToIndex();
     } else {
       alert("Complete the task first!")

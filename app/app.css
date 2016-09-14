@@ -35,6 +35,10 @@ button {
     margin: 0 20;
 }
 
+.small-button {
+  font-size: 12;
+}
+
 .alarm-time{
   font-size: 60;
 }

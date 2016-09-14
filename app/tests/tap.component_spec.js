@@ -6,6 +6,7 @@ describe("Tests for /pages/tap/tap.component.ts", function() {
   var tapComponent;
   beforeEach(function() {
      tapComponent = new component.TapPage();
+
   });
 
   it("Verify default message", function() {
@@ -19,6 +20,7 @@ describe("Tests for /pages/tap/tap.component.ts", function() {
 
   it("Verify completed task message", function(){
     spyOn(tapComponent, 'routeToHome');
+    spyOn(tapComponent, 'alarmOff');
     var n = 16;
     while (n--){
       tapComponent.onTap();
