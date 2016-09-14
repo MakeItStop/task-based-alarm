@@ -1,35 +1,26 @@
 import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import { Router } from "@angular/router";
 import { Page } from "ui/page";
-import * as applicationSettings from "application-settings";
-let sound = require("nativescript-sound");
+import { SoundService } from "../../shared/soundService";
 let timer = require('timer');
 
 @Component({
     selector: "math_game",
     templateUrl: "pages/math_game/math_game.component.html",
+    providers: [SoundService]
 })
 export class MathGame implements OnInit {
 
   private _taskPassed = false;
-  private alarmLooper = {};
   public answer = null;
   private _numberArray = []
   private _ARRAYMAX = 4;
   private _NEGATIVEOFFSET = 50;
   private _RANDOMLIMIT = 100;
   private _numberStringArray = [];
-  private currentSound = applicationSettings.getString("sound");
 
-  private sounds: any = {
-    "Foghorn": [sound.create("~/sounds/Foghorn.mp3"), 5100],
-    "Alarm": [sound.create("~/sounds/Alarm_Clock.mp3"),21100],
-    "Bomb_Siren": [sound.create("~/sounds/Bomb_Siren.mp3"),21100],
-    "Railroad": [sound.create("~/sounds/Railroad.mp3"),45100],
-    "Warning": [sound.create("~/sounds/Warning.mp3"),39100]
-  };
 
-  constructor(private _router: Router) {
+  constructor(private _router: Router, private _soundModule: SoundService) {
     for (var i = 0; i < this._ARRAYMAX; i++) {
       let randomNumber = Math.floor(Math.random()*this._RANDOMLIMIT) - this._NEGATIVEOFFSET;
       this._numberArray.push(randomNumber);
@@ -65,26 +56,15 @@ export class MathGame implements OnInit {
     }
   }
 
-  public playAlarm() {
-    this.sounds[this.currentSound][0].play();
-    this.alarmLooper = timer.setInterval(() => {
-      this.sounds[this.currentSound][0].play();
-    }, this.sounds[this.currentSound][1]);
-  }
-
-  private _stopAlarm() {
-    this.sounds[this.currentSound][0].stop();
-    timer.clearInterval(this.alarmLooper);
-  }
 
   ngOnInit() {
-    this.playAlarm();
+    this._soundModule.playAlarm();
   }
 
   onTap() {
     console.log("solution>>" + this._sumNumbers())
     if (this._taskPassed) {
-      this._stopAlarm();
+      this._soundModule.stopAlarm();
       this._router.navigate([""]);
     }
   }

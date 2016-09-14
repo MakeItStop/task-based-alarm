@@ -2,13 +2,13 @@ import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import { Router } from "@angular/router";
 import { Page } from "ui/page";
 import { SwipeGestureEventData, PinchGestureEventData, RotationGestureEventData } from "ui/gestures";
-import * as applicationSettings from "application-settings";
-let sound = require("nativescript-sound");
+import { SoundService } from "../../shared/soundService";
 let timer = require('timer');
 
 @Component({
     selector: "gesture",
     templateUrl: "pages/gesture/gesture.component.html",
+    providers: [SoundService]
     // styleUrls : ['gesture.component.css']
 })
 export class GesturePage implements OnInit {
@@ -16,21 +16,12 @@ export class GesturePage implements OnInit {
   private swipeLeft = false;
   private pinch = false;
   private rotate = false;
-  private alarmLooper = {};
-  private currentSound = applicationSettings.getString("sound");
-  private sounds: any = {
-    "Foghorn": [sound.create("~/sounds/Foghorn.mp3"), 5100],
-    "Alarm": [sound.create("~/sounds/Alarm_Clock.mp3"),21100],
-    "Bomb_Siren": [sound.create("~/sounds/Bomb_Siren.mp3"),21100],
-    "Railroad": [sound.create("~/sounds/Railroad.mp3"),45100],
-    "Warning": [sound.create("~/sounds/Warning.mp3"),39100]
-  };
 
-  constructor(private _router: Router) {}
+  constructor(private _router: Router, private _soundModule: SoundService) {}
 
   private _taskStop() {
     if (this.longPress && this.swipeLeft && this.pinch && this.rotate === true) {
-      this._stopAlarm();
+      this._soundModule.stopAlarm();
       timer.setTimeout(() => {
          this.routeToHome() }, 500);
     }
@@ -76,20 +67,8 @@ export class GesturePage implements OnInit {
     }
   }
 
-  public playAlarm() {
-    this.sounds[this.currentSound][0].play();
-    this.alarmLooper = timer.setInterval(() => {
-      this.sounds[this.currentSound][0].play();
-    }, this.sounds[this.currentSound][1]);
-  }
-
-  private _stopAlarm() {
-    this.sounds[this.currentSound][0].stop();
-    timer.clearInterval(this.alarmLooper);
-  }
-
   ngOnInit() {
-    this.playAlarm();
+    this._soundModule.playAlarm();
   }
 
   onLongPress() {
