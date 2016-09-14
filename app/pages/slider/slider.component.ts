@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import { Slider } from "ui/slider";
 import { Router } from "@angular/router";
 import { PropertyChangeData } from "data/observable";
+import * as applicationSettings from "application-settings";
 let sound = require("nativescript-sound");
 let timer = require('timer');
 
@@ -14,6 +15,7 @@ let timer = require('timer');
 export class SliderPage implements OnInit {
   private sliderCounter: number = 0;
   private alarmLooper = {};
+  private currentSound = applicationSettings.getString("sound");
   private sounds: any = {
     "Foghorn": [sound.create("~/sounds/Foghorn.mp3"), 5100],
     "Alarm": [sound.create("~/sounds/Alarm_Clock.mp3"),21100],
@@ -31,14 +33,14 @@ export class SliderPage implements OnInit {
   public playAlarm() {
     // let alarmArray = Object.keys(this.sounds)
     // let randomAlarm = alarmArray[Math.floor(Math.random() * alarmArray.length)]
-    this.sounds["Railroad"][0].play();
+    this.sounds[this.currentSound][0].play();
     this.alarmLooper = timer.setInterval(() => {
-      this.sounds["Railroad"][0].play();
-    }, this.sounds["Railroad"][1]);
+      this.sounds[this.currentSound][0].play();
+    }, this.sounds[this.currentSound][1]);
   }
 
   private _stopAlarm() {
-    this.sounds["Railroad"][0].stop();
+    this.sounds[this.currentSound][0].stop();
     timer.clearInterval(this.alarmLooper);
   }
 

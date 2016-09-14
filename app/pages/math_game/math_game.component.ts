@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import { Router } from "@angular/router";
 import { Page } from "ui/page";
+import * as applicationSettings from "application-settings";
 let sound = require("nativescript-sound");
 let timer = require('timer');
 
@@ -18,6 +19,7 @@ export class MathGame implements OnInit {
   private _NEGATIVEOFFSET = 50;
   private _RANDOMLIMIT = 100;
   private _numberStringArray = [];
+  private currentSound = applicationSettings.getString("sound");
 
   private sounds: any = {
     "Foghorn": [sound.create("~/sounds/Foghorn.mp3"), 5100],
@@ -64,14 +66,14 @@ export class MathGame implements OnInit {
   }
 
   public playAlarm() {
-    this.sounds["Foghorn"][0].play();
+    this.sounds[this.currentSound][0].play();
     this.alarmLooper = timer.setInterval(() => {
-      this.sounds["Foghorn"][0].play();
-    }, this.sounds["Foghorn"][1]);
+      this.sounds[this.currentSound][0].play();
+    }, this.sounds[this.currentSound][1]);
   }
 
   private _stopAlarm() {
-    this.sounds["Foghorn"][0].stop();
+    this.sounds[this.currentSound][0].stop();
     timer.clearInterval(this.alarmLooper);
   }
 
