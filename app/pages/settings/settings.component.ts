@@ -33,9 +33,8 @@ export class SettingsPage {
     }
   }
 
-  public randomTask(picker: ListPicker) {
+  public randomPicker(picker: ListPicker) {
     let randomIndex = Math.floor(Math.random() * picker.items.length);
-    console.log("RANDOM" + randomIndex);
     picker.selectedIndex = randomIndex;
   }
 
