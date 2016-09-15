@@ -5,8 +5,8 @@ import { Router } from "@angular/router";
 import { Page } from "ui/page";
 import { Slider } from "ui/slider";
 
-let taskList = ["tap","math-game","slider", "gesture", "memory"]
-let soundList = ["Foghorn","Alarm", "Bomb_Siren", "Railroad", "Warning"]
+let taskList = ["tap","math-game","slider", "gesture", "memory", "random"]
+let soundList = ["Foghorn","Alarm", "Bomb_Siren", "Railroad", "Warning", "Random"]
 
 @Component({
   selector: "settings",
@@ -35,31 +35,36 @@ export class SettingsPage {
     }
   }
 
-  public randomPicker(picker: ListPicker) {
-    let randomIndex = Math.floor(Math.random() * picker.items.length);
-    picker.selectedIndex = randomIndex;
-  }
-
   public configureTask(picker: ListPicker) {
-    picker.selectedIndex = picker.items.indexOf(this.savedTask)
+    picker.selectedIndex = picker.items.indexOf(this.savedTask);
   }
 
   public configureSound(soundPicker: ListPicker) {
-    soundPicker.selectedIndex = soundPicker.items.indexOf(this.savedSound)
+    soundPicker.selectedIndex = soundPicker.items.indexOf(this.savedSound);
   }
 
   public selectedIndexChanged(taskPicker) {
+    let randomTask = taskList[Math.floor(Math.random()*taskList.length)];
     this._currentTask = taskList[taskPicker.selectedIndex] || "tap";
-    this._storeString("task", this._currentTask);
+    if (this._currentTask === "random") {
+      this._storeString("task", randomTask);
+    } else {
+      this._storeString("task", this._currentTask);
+    };
   }
 
   public selectedSoundIndexChanged(soundPicker) {
+    let randomSound = soundList[Math.floor(Math.random()*soundList.length)];
     this._currentSound = soundList[soundPicker.selectedIndex] || "Alarm";
-    this._storeString("sound", this._currentSound);
+    if (this._currentSound === "Random") {
+      this._storeString("sound", randomSound);
+    } else {
+      this._storeString("sound", this._currentSound);
+    };
   }
 
   public difficultyChanged(slider) {
-    console.log("slider index: " + Math.ceil(slider.value))
+    console.log("slider index: " + Math.ceil(slider.value));
     this._storeNumber("memoryDifficulty", Math.ceil(slider.value));
   }
 
