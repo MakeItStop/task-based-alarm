@@ -5,7 +5,7 @@ var appSettings = require("application-settings");
 
 describe("#selectedIndexChanged()", function() {
   var taskPicker;
-  var settingsComponent
+  var settingsComponent;
   beforeEach(function() {
     settingsComponent = new component.SettingsPage();
     taskPicker = jasmine.createSpyObj('taskPicker', ['selectedIndex']);
@@ -14,6 +14,6 @@ describe("#selectedIndexChanged()", function() {
 
   it("is able to save a set task value", function() {
     settingsComponent.selectedIndexChanged(taskPicker);
-    expect(appSettings.getString("task")).toEqual("math-game");
+    expect(appSettings.getString("task")).toEqual("maths");
   });
 });

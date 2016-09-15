@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 import { Page } from "ui/page";
 import { Slider } from "ui/slider";
 
-let taskList = ["tap","math-game","slider", "gesture", "memory"]
+let taskList = ["tap","maths","slider", "gesture", "memory"]
 let soundList = ["Foghorn","Alarm", "Bomb_Siren", "Railroad", "Warning"]
 
 @Component({
