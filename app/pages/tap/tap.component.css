@@ -1,0 +1,17 @@
+Button {
+    font-size: 26;
+    width: 60%;
+    margin: 60 0;
+    background-color: #ffffff;
+    color: #525478;
+    border-radius: 2;
+    text-align: center;
+}
+
+#message {
+  margin: 20 0;
+}
+
+Label {
+  font-size: 28;
+}

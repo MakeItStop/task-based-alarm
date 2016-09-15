@@ -7,6 +7,7 @@ let timer = require('timer');
 @Component({
     selector: "maths",
     templateUrl: "pages/maths/maths.component.html",
+    styleUrls: ["pages/maths/maths.component.css"],
     providers: [SoundService]
 })
 export class MathsPage implements OnInit {

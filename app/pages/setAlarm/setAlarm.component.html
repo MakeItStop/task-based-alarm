@@ -4,7 +4,7 @@
 
   <Label text="Choose a time" class="title" row="0"></Label>
 
-  <timePicker class="picker" #timePicker (loaded)="configureTime(timePicker)" verticalAlignment="center" row="1"></timePicker>
+  <timePicker class="picker" id="timePicker" #timePicker (loaded)="configureTime(timePicker)" verticalAlignment="center" row="1"></timePicker>
 
   <Button row="2" text="Settings" (tap)="routeToSettings()"></Button>
 

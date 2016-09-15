@@ -25,7 +25,7 @@ describe("Tests for /pages/tap/tap.component.ts", function() {
     while (n--){
       tapComponent.onTap();
     }
-    expect(tapComponent.message).toBe("You are awake");
+    expect(tapComponent.message).toBe("Make It Stop!");
     tapComponent.onTap();
     expect(tapComponent.routeToHome).toHaveBeenCalled();
   });

@@ -18,12 +18,31 @@ stack-layout {
 
 Button {
     font-size: 26;
-    width: 60%;
+    /*width: 60%;
     margin: 20 0;
     background-color: #ffffff;
     color: #525478;
     border-radius: 2;
-    text-align: center;
+    text-align: center;*/
+}
+
+Slider {
+  margin-left: 20;
+  margin-right: 20;
+  color: green;
+}
+
+#timePicker {
+  color: white;
+  margin: 20 0;
+}
+
+#taskPicker {}
+
+#soundPicker {}
+
+#saveSettings {
+  margin: 2 0 20 0;
 }
 
 .title {

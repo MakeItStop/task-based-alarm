@@ -12,6 +12,7 @@ let soundList = ["foghorn","alarm", "bomb_siren", "railroad", "warning", "random
 @Component({
   selector: "settings",
   templateUrl: "pages/settings/settings.component.html",
+  styleUrls: ["pages/settings/settings.component.css"]
 })
 
 export class SettingsPage {
