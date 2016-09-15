@@ -126,6 +126,17 @@ I would like to be able to choose a task difficulty
 
 ```
 
+Technologies
+------------
+![nativescript_angular_logo](https://cloud.githubusercontent.com/assets/18379191/18570933/4a2f32a4-7ba6-11e6-9ad6-d91bfcd3a471.png)
+* Nativescript
+* Angular 2
+* Typescript
+* HTML5
+* CSS
+* Jasmine
+* Javascript
+
 Future implementations
 ----------------------
 
@@ -140,6 +151,7 @@ Features
 * Health graph API - how much sleep you get - tracker
 * Choice of alarm tune
 * Motivational messages? (Rock)
+* Upload to app/play store
 
 Tasks
 ------
