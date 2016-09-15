@@ -29,8 +29,7 @@ export class MemoryPage implements OnInit {
 
   private _getDifficulty() {
     let difficulty = applicationSettings.getNumber("memoryDifficulty", 8);
-    console.log(difficulty);
-
+    if (isNaN(difficulty)) { difficulty = 1 };
     this._multiply(COLORS, Math.ceil(difficulty/COLORS.length));
 
     return difficulty*2;
