@@ -22,8 +22,8 @@ export class SettingsPage {
   public tasks: Array<string>;
   public sounds: Array<string>;
 
-  public savedTask = applicationSettings.getString("task");
-  public savedSound = applicationSettings.getString("sound");
+  public savedTask = applicationSettings.getString("task", "tap");
+  public savedSound = applicationSettings.getString("sound", "foghorn");
   public savedDifficulty = applicationSettings.getNumber("memoryDifficulty");
 
   constructor(private _router: Router) {
@@ -42,7 +42,7 @@ export class SettingsPage {
   }
 
   public configureSound(soundPicker: ListPicker) {
-    soundPicker.selectedIndex = soundPicker.items.indexOf(this.savedSound);
+    soundPicker.selectedIndex = soundList.indexOf(this.savedSound);
   }
 
   public selectedIndexChanged(taskPicker) {

@@ -32,7 +32,6 @@ export class ListPage implements OnInit {
   }
 
   seeAlarm() {
-    this._router.navigate(["gesture"]); // ??
     this._router.navigate([this._selectedTask]);
   }
 

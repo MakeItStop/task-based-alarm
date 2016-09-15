@@ -7,7 +7,7 @@ let timer = require('timer');
 
 export class SoundService {
   public alarmLooper = {};
-  public currentSound = applicationSettings.getString("sound");
+  public currentSound = applicationSettings.getString("sound", "alarm");
 
   private sounds: any = {
     "foghorn": [sound.create("~/sounds/Foghorn.mp3"), 5100],
@@ -18,8 +18,6 @@ export class SoundService {
   };
 
   public playAlarm() {
-    //   // let alarmArray = Object.keys(this.sounds)
-    //   // let randomAlarm = alarmArray[Math.floor(Math.random() * alarmArray.length)]
     this.sounds[this.currentSound][0].play();
     this.alarmLooper = timer.setInterval(() => {
       this.sounds[this.currentSound][0].play();
