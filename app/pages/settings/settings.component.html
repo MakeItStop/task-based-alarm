@@ -11,20 +11,21 @@
     (selectedIndexChange)="selectedIndexChanged(picker)">
   </ListPicker>
 
+  <Label row="1" text="Choose a memory task difficulty"></Label>
+
+  <Slider row="2" #setDifficulty [value]="savedDifficulty" (valueChange)="difficultyChanged(setDifficulty)"
+    minValue="1" maxValue="24">
+  </Slider>
+
   <ListPicker #soundPicker
     (loaded) = "configureSound(soundPicker)"
     class="picker"
-    row="1"
+    row="3"
     [items]="sounds"
     [selectedIndex]="selectedIndex"
     (selectedIndexChange)="selectedSoundIndexChanged(soundPicker)">
   </ListPicker>
 
-  <Label text="Choose a Difficulty"></Label>
-  <Slider row="2" #setDifficulty [value]="savedDifficulty" (valueChange)="difficultyChanged(setDifficulty)"
-          minValue="1" maxValue="24">
-  </Slider>
-
-  <Button row="3" text="Save settings" (tap)="saveSettings()"></Button>
+  <Button row="4" text="Save settings" (tap)="saveSettings()"></Button>
 
 </StackLayout>

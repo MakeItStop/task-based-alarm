@@ -1,12 +1,12 @@
 var reflect = require("reflect-metadata");
-var component = require("../pages/math_game/math_game.component");
+var component = require("../pages/maths/maths.component");
 
 describe("Tests for MathGame component", function() {
 
   var MathGame;
   beforeEach(function() {
      spyOn(Math,'random').and.returnValue(0.7)
-     MathGame = new component.MathGame();
+     MathGame = new component.MathsPage();
 
   });
 

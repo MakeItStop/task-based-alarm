@@ -5,8 +5,9 @@ import { Router } from "@angular/router";
 import { Page } from "ui/page";
 import { Slider } from "ui/slider";
 
-let taskList = ["tap","math-game","slider", "gesture", "memory", "random"]
-let soundList = ["Foghorn","Alarm", "Bomb_Siren", "Railroad", "Warning", "Random"]
+
+let taskList = ["tap","maths","slider", "gesture", "memory", "random"];
+let soundList = ["foghorn","alarm", "bomb_siren", "railroad", "warning", "random"];
 
 @Component({
   selector: "settings",
@@ -56,7 +57,7 @@ export class SettingsPage {
     if (soundPicker.selectedIndex === 5) {
       soundPicker.selectedIndex = this._randomIndex;
     }
-    this._currentSound = soundList[soundPicker.selectedIndex] || "Alarm";
+    this._currentSound = soundList[soundPicker.selectedIndex] || "alarm";
     this._storeString("sound", this._currentSound);
 
   }
