@@ -7,7 +7,7 @@ actionbar {
     background-color: #525478;
 }
 
-Button, label, stack-layout {
+button, label, stack-layout {
     horizontal-align: center;
 }
 
@@ -16,27 +16,25 @@ stack-layout {
   margin-right: 5;
 }
 
-button {
-    font-size: 36;
-}
-
-.picker {
-    color: #ffffff;
+Button {
+    font-size: 26;
+    width: 60%;
+    margin: 20 0;
+    background-color: #ffffff;
+    color: #525478;
+    border-radius: 2;
+    text-align: center;
 }
 
 .title {
-    font-size: 30;
-    margin: 20;
+    font-size: 28;
+    margin: 15;
 }
 
 .message {
     font-size: 20;
     text-align: center;
     margin: 0 20;
-}
-
-.small-button {
-  font-size: 12;
 }
 
 .alarm-time{
