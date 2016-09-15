@@ -5,19 +5,17 @@ import { Page } from 'ui/page';
 import { Router } from "@angular/router";
 import * as moment from "moment";
 
+let taskList = ["tap","maths","slider", "gesture", "memory"];
+
 @Component({
   selector: "list",
   templateUrl: "pages/list/list.component.html",
   styleUrls: ["pages/list/list.component.css"]
 })
 export class ListPage implements OnInit {
+  constructor(private _router: Router) {}
 
-  constructor(private _router: Router) {
-    // console.log("formatted alarm time: " + this.formattedAlarmTime);
-    // console.log("alarm time: " + this._alarmTime);
-  }
-
-  private _selectedTask = applicationSettings.getString("task", "tap");
+  public selectedTask = this._getTask();
   private _timeString = applicationSettings.getNumber("hour", 9) + ":" + applicationSettings.getNumber("minute", 25);
   private _now = moment();
   private _plusDays = applicationSettings.getNumber("plusDays")
@@ -26,17 +24,34 @@ export class ListPage implements OnInit {
 
   public formattedAlarmTime = moment(this._timeString, "HH:mm").format("HH:mm");
 
-  ngOnInit() {
-    if (global.alarmTimer) {
-      timer.clearTimeout(global.alarmTimer);
+  private _getTask(){
+    let task = applicationSettings.getString("task", "tap");
+    if (task === 'random') {
+      return this._getRandomItemFrom(taskList);
     }
-    global.alarmTimer = timer.setTimeout(() => {
-      this._router.navigate([this._selectedTask]);
-    }, this._until)
+    return task;
   }
 
-  seeAlarm() {
-    this._router.navigate([this._selectedTask]);
+  private _getRandomItemFrom(array) {
+    let randomIndex = Math.floor(Math.random() * array.length);
+    return array[randomIndex];
+  }
+
+  ngOnInit() {
+    global.alarmTimer ? this._clearAlarm() : this._startAlarmTimer();
+  }
+
+  private _clearAlarm() {
+    timer.clearTimeout(global.alarmTimer);
+  }
+
+  private _startAlarmTimer() {
+    global.alarmTimer = timer.setTimeout(() => {
+      this.triggerAlarm();
+    }, this._until)
+  }
+  public triggerAlarm() {
+    this._router.navigate([this.selectedTask]);
   }
 
 }

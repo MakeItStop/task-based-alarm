@@ -12,7 +12,14 @@ let COLORS = ["yellow","red","purple",
 
 @Component({
   selector: "memory",
-  templateUrl: "pages/memory/memory.component.html",
+  template:`
+            <StackLayout>
+              <Button [text]="taskPassed ? 'Make It Stop!' : 'Test Your Memory'" (tap)="onTap()" id="title"></Button>
+              <GridLayout [rows]="displayRows" [columns]="displayColumns">
+                  <Button *ngFor="let tile of tiles" [row]='tile.row' [col]='tile.col' (tap)="chooseTile(tile)" [class.selected]="selectedTiles.includes(tile)" [id]="tile.id"></Button>
+              </GridLayout>
+            </StackLayout>
+            `,
   styleUrls: ["pages/memory/memory-common.css"],
   providers: [SoundService]
 })
@@ -21,18 +28,19 @@ export class MemoryPage implements OnInit {
   public taskPassed = false;
   public selectedTiles = [];
   public tiles: Array<Tile> = [];
-  private _maxTiles = this._getDifficulty();
-  private _maxColumns = Math.ceil(this._maxTiles/6);
+  private _maxTiles = this._getMaxTiles();
+  private PROPORTION = 6;
+  private _maxColumns = Math.ceil(this._maxTiles/this.PROPORTION);
   private _maxRows = this._maxTiles/this._maxColumns
   public displayColumns = this._multiply(['*'], this._maxColumns).join();
   public displayRows = this._multiply(['*'], this._maxRows).join();
 
-  private _getDifficulty() {
+  private _getMaxTiles() {
     let difficulty = applicationSettings.getNumber("memoryDifficulty", 8);
     if (isNaN(difficulty)) { difficulty = 1 };
     this._multiply(COLORS, Math.ceil(difficulty/COLORS.length));
 
-    return difficulty*2;
+    return difficulty*2; // difficulty === number of pairs
 
   }
 
