@@ -16,6 +16,7 @@ let soundList = ["Foghorn","Alarm", "Bomb_Siren", "Railroad", "Warning", "Random
 export class SettingsPage {
   private _currentTask = "";
   private _currentSound = "";
+  private _randomIndex = Math.floor(Math.random()* 5);
 
   public tasks: Array<string>;
   public sounds: Array<string>;
@@ -44,33 +45,28 @@ export class SettingsPage {
   }
 
   public selectedIndexChanged(taskPicker) {
-    let randomTask = taskList[Math.floor(Math.random()*taskList.length)];
+    if (taskPicker.selectedIndex === 5) {
+      taskPicker.selectedIndex = this._randomIndex;
+    }
     this._currentTask = taskList[taskPicker.selectedIndex] || "tap";
-    if (this._currentTask === "random") {
-      this._storeString("task", randomTask);
-    } else {
-      this._storeString("task", this._currentTask);
-    };
+    this._storeString("task", this._currentTask);
   }
 
   public selectedSoundIndexChanged(soundPicker) {
-    let randomSound = soundList[Math.floor(Math.random()*soundList.length)];
+    if (soundPicker.selectedIndex === 5) {
+      soundPicker.selectedIndex = this._randomIndex;
+    }
     this._currentSound = soundList[soundPicker.selectedIndex] || "Alarm";
-    if (this._currentSound === "Random") {
-      this._storeString("sound", randomSound);
-    } else {
-      this._storeString("sound", this._currentSound);
-    };
+    this._storeString("sound", this._currentSound);
+
   }
 
   public difficultyChanged(slider) {
-    console.log("slider index: " + Math.ceil(slider.value));
     this._storeNumber("memoryDifficulty", Math.ceil(slider.value));
   }
 
   private _storeString(attribute, value) {
     applicationSettings.setString(attribute, value);
-    console.log("THIS>>>>>" + applicationSettings.getString("sound"));
   }
   private _storeNumber(attribute, value) {
     applicationSettings.setNumber(attribute, value);
