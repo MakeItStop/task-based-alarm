@@ -13,10 +13,10 @@ describe("Tests for /pages/list/list.component.ts", function() {
       expect(listComponent.selectedTask).toBe('maths');
     })
     it("is set to random alarm if 'random' option chosen", function(){
-      spyOn(Math, 'random').and.returnValue(1);
+      spyOn(Math, 'random').and.returnValue(0.4);
       spyOn(appSettings, 'getString').and.returnValue('random');
       listComponent = new component.ListPage();
-      expect(listComponent.selectedTask).toBe('memory');
+      expect(listComponent.selectedTask).toBe('slider');
     })
   })
 });

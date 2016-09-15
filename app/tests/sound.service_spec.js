@@ -13,10 +13,10 @@ describe("Tests for /shared/soundService.ts", function() {
       expect(soundService.currentSound).toBe('foghorn');
     })
     it("is set to random alarm if 'random' option chosen", function(){
-      spyOn(Math, 'random').and.returnValue(1);
+      spyOn(Math, 'random').and.returnValue(0.4);
       spyOn(appSettings, 'getString').and.returnValue('random');
-      soundService = new service.SoundService();
-      expect(soundService.currentSound).toBe('warning');
+    soundService = new service.SoundService();
+      expect(soundService.currentSound).toBe('bomb_siren');
     })
   })
 

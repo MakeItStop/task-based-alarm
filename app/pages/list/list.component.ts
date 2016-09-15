@@ -13,11 +13,10 @@ let taskList = ["tap","maths","slider", "gesture", "memory"];
   styleUrls: ["pages/list/list.component.css"]
 })
 export class ListPage implements OnInit {
-
   constructor(private _router: Router) {}
 
   public selectedTask = this._getTask();
-  private _timeString = applicationSettings.getNumber("hour") + ":" + applicationSettings.getNumber("minute");
+  private _timeString = applicationSettings.getNumber("hour", 9) + ":" + applicationSettings.getNumber("minute", 25);
   private _now = moment();
   private _plusDays = applicationSettings.getNumber("plusDays")
   private _alarmTime = moment(this._timeString, "HH:mm").add(this._plusDays, 'd')
@@ -34,7 +33,7 @@ export class ListPage implements OnInit {
   }
 
   private _getRandomItemFrom(array) {
-    let randomIndex = Math.floor(Math.random() * (array.length - 1));
+    let randomIndex = Math.floor(Math.random() * array.length);
     return array[randomIndex];
   }
 
