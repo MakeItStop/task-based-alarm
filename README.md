@@ -1,17 +1,14 @@
-# Task based alarm
+# Make It Stop!
 ================
 
-## Team
+A task based alarm app built using Nativescript for people who find it hard to wake up in the morning. To stop the alarm, the user must complete a task, answer a question or complete a mini game. This app was a two week project in our final 10th and 11th week of the @MakersAcademy bootcamp.
 
-* Sam
-* Luke
-* Prashant
-* Rich
+## Members
 
-## App Description
-
-An alarm clock for people who find it hard to wake up in the morning. To stop the alarm, the user must complete a task, answer a question or complete a mini game
-
+* Sam - https://github.com/samjbro
+* Luke - https://github.com/lukecartledge
+* Prashant - https://github.com/prashantmathias
+* Rich - https://github.com/richo225
 
 ## User stories
 
@@ -49,16 +46,41 @@ I would like to view the alarm
 ### MVP 2
 ```
 As a very sleepy User
-So that I can sleep for longer
-I would like to be able to snooze my phone alarm
-
-As a very sleepy User
 So that I can't switch an alarm off easily
 I would like to complete a task in order to switch it off
 
 ```
 
-Possible features
+### MVP 3
+```
+As a very sleepy User
+So that I can decide how easy it is for me to stay awake
+I would like to be able to choose from a task list
+
+As a very sleepy User
+So that I cdon't have to pick a task
+I would like to have a random task
+
+As a very sleepy User
+So that I can decide how I'd like to be woken up
+I would like to be able to choose from an alarm sound list
+
+As a very sleepy User
+So that I don't have to pick a sound choice
+I would like to have a random alarm sound
+
+```
+### MVP 3
+```
+As a very sleepy User
+So that I can further decide how easy it is for me to stay awake
+I would like to be able to choose a task difficulty
+
+```
+Future implementations
+======================
+
+Features
 ------------------
 * Point system
 * Incentives (snooze fines, task difficulties)
@@ -72,10 +94,8 @@ Possible features
 
 Tasks
 ------
-* Simple math sums
-* Touch games(swipe left/right)
 * Riddles
-* Gyro based
-* Memory games
+* Accelerometer
+* GPS
 * Capture - picture matching
-* Have to take a pic of specific location
+* Must take a picture of a specific location
