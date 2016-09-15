@@ -12,10 +12,13 @@ import * as moment from "moment";
 })
 export class ListPage implements OnInit {
 
-  constructor(private _router: Router) {}
+  constructor(private _router: Router) {
+    // console.log("formatted alarm time: " + this.formattedAlarmTime);
+    // console.log("alarm time: " + this._alarmTime);
+  }
 
-  private _selectedTask = applicationSettings.getString("task");
-  private _timeString = applicationSettings.getNumber("hour") + ":" + applicationSettings.getNumber("minute");
+  private _selectedTask = applicationSettings.getString("task", "tap");
+  private _timeString = applicationSettings.getNumber("hour", 9) + ":" + applicationSettings.getNumber("minute", 25);
   private _now = moment();
   private _plusDays = applicationSettings.getNumber("plusDays")
   private _alarmTime = moment(this._timeString, "HH:mm").add(this._plusDays, 'd')
