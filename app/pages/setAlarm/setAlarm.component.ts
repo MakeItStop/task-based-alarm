@@ -8,6 +8,7 @@ import { Page } from "ui/page";
 @Component({
   selector: "setAlarm",
   templateUrl: "pages/setAlarm/setAlarm.component.html",
+  styleUrls: ["pages/setAlarm/setAlarm.component.css"]
 })
 
 export class SetAlarmPage {

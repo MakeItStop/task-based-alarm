@@ -8,6 +8,15 @@ Button {
   background-color: transparent;
 }
 
+#endAlarm {
+  visibility: collapse;
+}
+
+#endAlarm.taskPassed {
+  visibility: visible;
+  font-size: 30;
+}
+
 #purple.selected {
   background-color: purple;
 }
@@ -43,15 +52,4 @@ Button {
 }
 #snotGreen.selected {
   background-color: rgb(6, 242, 65);
-}
-
-
-
-#endAlarm {
-  visibility: collapse;
-}
-
-#endAlarm.taskPassed {
-  visibility: visible;
-  font-size: 36;
 }

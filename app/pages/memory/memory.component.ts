@@ -24,8 +24,8 @@ export class MemoryPage implements OnInit {
   private _maxTiles = this._getDifficulty();
   private _maxColumns = Math.ceil(this._maxTiles/6);
   private _maxRows = this._maxTiles/this._maxColumns
-  public displayColumns = this._multiply(['*'], this._maxColumns);
-  public displayRows = this._multiply(['*'], this._maxRows);
+  public displayColumns = this._multiply(['*'], this._maxColumns).join();
+  public displayRows = this._multiply(['*'], this._maxRows).join();
 
   private _getDifficulty() {
     let difficulty = applicationSettings.getNumber("memoryDifficulty", 8);
@@ -69,23 +69,19 @@ export class MemoryPage implements OnInit {
 
   onTap() {
     if (this.taskPassed) {
-      this._soundModule.stopAlarm();
+      this._alarmOff();
       this._routeToIndex();
     } else {
       alert("Complete the task first!")
     }
   }
 
-  private _routeToIndex() {
-    this._router.navigate([""]);
+  private _alarmOff() {
+    this._soundModule.stopAlarm();
   }
 
-  public get headerMessage() : string {
-    if (!this.taskPassed) {
-      return "Test Your Memory";
-    } else {
-      return "Success!!";
-    }
+  private _routeToIndex() {
+    this._router.navigate([""]);
   }
 
   chooseTile(tile) {

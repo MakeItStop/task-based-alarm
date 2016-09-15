@@ -8,6 +8,7 @@ import * as moment from "moment";
 @Component({
   selector: "list",
   templateUrl: "pages/list/list.component.html",
+  styleUrls: ["pages/list/list.component.css"]
 })
 export class ListPage implements OnInit {
 
