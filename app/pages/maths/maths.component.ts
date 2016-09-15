@@ -5,11 +5,11 @@ import { SoundService } from "../../shared/soundService";
 let timer = require('timer');
 
 @Component({
-    selector: "math_game",
-    templateUrl: "pages/math_game/math_game.component.html",
+    selector: "maths",
+    templateUrl: "pages/maths/maths.component.html",
     providers: [SoundService]
 })
-export class MathGame implements OnInit {
+export class MathsPage implements OnInit {
 
   private _taskPassed = false;
   public answer = null;
