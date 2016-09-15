@@ -1,16 +1,24 @@
-# Make It Stop!
-================
+Make It Stop!
+=============
 
-A task based alarm app built using Nativescript for people who find it hard to wake up in the morning. To stop the alarm, the user must complete a task, answer a question or complete a mini game. This app was a two week project in our final 10th and 11th week of the @MakersAcademy bootcamp.
+A task based alarm app built using Nativescript for people who find it hard to wake up in the morning. To stop the alarm, the user must complete a task, answer a question or complete a mini game. This app was a two week project in our final 10th and 11th week of the [MakersAcademy](https://github.com/makersacademy) bootcamp.
 
-## Members
+Members
+-------
 
 * Sam - https://github.com/samjbro
 * Luke - https://github.com/lukecartledge
 * Prashant - https://github.com/prashantmathias
 * Rich - https://github.com/richo225
 
-## User stories
+![iphone_6_both](https://cloud.githubusercontent.com/assets/18379191/18569614/9a2a2eb8-7b9b-11e6-8d6c-79c84ea5d782.png)
+
+Demonstration
+-------------
+[![MakeItStop! Demo](https://cloud.githubusercontent.com/assets/18379191/18570175/c467eb58-7b9f-11e6-8957-2f55b19d0b72.png)](https://www.youtube.com/watch?v=WGuyOzGttv0 "MakeItStop! Demo")
+
+User stories
+------------
 
 ### MVP 1
 ```
@@ -70,7 +78,7 @@ So that I don't have to pick a sound choice
 I would like to have a random alarm sound
 
 ```
-### MVP 3
+### MVP 4
 ```
 As a very sleepy User
 So that I can further decide how easy it is for me to stay awake
