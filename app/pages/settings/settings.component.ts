@@ -55,9 +55,9 @@ export class SettingsPage {
   }
 
   public selectedSoundIndexChanged(soundPicker) {
-    if (soundPicker.selectedIndex === 5) {
-      soundPicker.selectedIndex = this._randomIndex;
-    }
+    // if (soundPicker.selectedIndex === 5) {
+    //   soundPicker.selectedIndex = this._randomIndex;
+    // }
     this._currentSound = soundList[soundPicker.selectedIndex] || "alarm";
     this._storeString("sound", this._currentSound);
 

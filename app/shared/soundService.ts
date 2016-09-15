@@ -6,9 +6,6 @@ let timer = require('timer');
 @Injectable()
 
 export class SoundService {
-  public alarmLooper = {};
-  public currentSound = applicationSettings.getString("sound", "alarm");
-
   private sounds: any = {
     "foghorn": [sound.create("~/sounds/Foghorn.mp3"), 5100],
     "alarm": [sound.create("~/sounds/Alarm_Clock.mp3"),21100],
@@ -17,7 +14,25 @@ export class SoundService {
     "warning": [sound.create("~/sounds/Warning.mp3"),39100]
   };
 
+  public alarmLooper = {};
+  public currentSound = this._getSound();;
+
+  private _getSound() {
+    let sound = applicationSettings.getString("sound", "alarm");
+    if (sound === "random") {
+      return this._getRandomIndexFrom(Object.keys(this.sounds));
+    }
+    return sound;
+  }
+
+  private _getRandomIndexFrom(array) {
+    let randomIndex = Math.floor(Math.random() * (array.length - 1));
+    return array[randomIndex];
+  }
+
+
   public playAlarm() {
+
     this.sounds[this.currentSound][0].play();
     this.alarmLooper = timer.setInterval(() => {
       this.sounds[this.currentSound][0].play();
