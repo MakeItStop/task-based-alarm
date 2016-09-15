@@ -6,7 +6,8 @@ import { SoundService } from "../../shared/soundService";
 @Component({
     selector: "tap",
     templateUrl: "pages/tap/tap.component.html",
-    providers: [SoundService]
+    providers: [SoundService],
+    styleUrls: ["pages/tap/tap.component.css"]
 })
 export class TapPage implements OnInit {
   public counter: number = 16;
@@ -19,7 +20,7 @@ export class TapPage implements OnInit {
       return this.counter + " taps left";
     } else {
       this.taskPassed = true;
-      return "You are awake"
+      return "Make It Stop!"
     }
   }
 

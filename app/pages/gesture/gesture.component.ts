@@ -8,8 +8,8 @@ let timer = require('timer');
 @Component({
     selector: "gesture",
     templateUrl: "pages/gesture/gesture.component.html",
-    providers: [SoundService]
-    // styleUrls : ['gesture.component.css']
+    providers: [SoundService],
+    styleUrls: ["pages/gesture/gesture.component.css"]
 })
 export class GesturePage implements OnInit {
   private longPress = false;

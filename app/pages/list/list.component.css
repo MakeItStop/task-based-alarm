@@ -1,1 +1,9 @@
-
+Button {
+    font-size: 26;
+    width: 60%;
+    margin: 20 0;
+    background-color: #ffffff;
+    color: #525478;
+    border-radius: 2;
+    text-align: center;
+}

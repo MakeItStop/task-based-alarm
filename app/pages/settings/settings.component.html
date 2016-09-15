@@ -4,7 +4,7 @@
 
   <ListPicker #picker
     (loaded) = "configureTask(picker)"
-    class="picker"
+    id="taskPicker"
     row="0"
     [items]="tasks"
     [selectedIndex]="selectedIndex"
@@ -19,13 +19,13 @@
 
   <ListPicker #soundPicker
     (loaded) = "configureSound(soundPicker)"
-    class="picker"
+    id="soundPicker"
     row="3"
     [items]="sounds"
     [selectedIndex]="selectedIndex"
     (selectedIndexChange)="selectedSoundIndexChanged(soundPicker)">
   </ListPicker>
 
-  <Button row="4" text="Save settings" (tap)="saveSettings()"></Button>
+  <Button id="saveSettings" row="4" text="Save settings" (tap)="saveSettings()"></Button>
 
 </StackLayout>
