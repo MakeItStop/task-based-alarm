@@ -1,7 +1,11 @@
 Button {
   background-color: white;
-  horizontal-align: baseline;
+  horizontal-align: stretch;
   margin: 2;
+}
+
+#title {
+  background-color: transparent;
 }
 
 #purple.selected {

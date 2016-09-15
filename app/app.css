@@ -7,7 +7,7 @@ actionbar {
     background-color: #525478;
 }
 
-button, label, stack-layout {
+Button, label, stack-layout {
     horizontal-align: center;
 }
 

@@ -3,6 +3,7 @@ import { ListPicker } from "ui/list-picker";
 import * as applicationSettings from "application-settings";
 import { Router } from "@angular/router";
 import { Page } from "ui/page";
+import { Slider } from "ui/slider";
 
 let taskList = ["tap","math-game","slider", "gesture", "memory"]
 let soundList = ["Foghorn","Alarm", "Bomb_Siren", "Railroad", "Warning"]
@@ -21,6 +22,7 @@ export class SettingsPage {
 
   public savedTask = applicationSettings.getString("task");
   public savedSound = applicationSettings.getString("sound");
+  public savedDifficulty = applicationSettings.getNumber("memoryDifficulty");
 
   constructor(private _router: Router) {
     this.tasks = [];
@@ -56,9 +58,17 @@ export class SettingsPage {
     this._storeString("sound", this._currentSound);
   }
 
+  public difficultyChanged(slider) {
+    console.log("slider index: " + Math.ceil(slider.value))
+    this._storeNumber("memoryDifficulty", Math.ceil(slider.value));
+  }
+
   private _storeString(attribute, value) {
     applicationSettings.setString(attribute, value);
     console.log("THIS>>>>>" + applicationSettings.getString("sound"));
+  }
+  private _storeNumber(attribute, value) {
+    applicationSettings.setNumber(attribute, value);
   }
 
   public saveSettings() {

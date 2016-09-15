@@ -13,6 +13,7 @@ import { Page } from "ui/page";
 export class SetAlarmPage {
 
   constructor(private _router: Router) {
+
     if (applicationSettings.getString("task") === "") {
       applicationSettings.setString("task", "tap");
     }
