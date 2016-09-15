@@ -42,7 +42,7 @@ export class SettingsPage {
   }
 
   public configureSound(soundPicker: ListPicker) {
-    soundPicker.selectedIndex = soundList.indexOf(this.savedSound);
+    soundPicker.selectedIndex = soundPicker.items.indexOf(this.savedSound);
   }
 
   public selectedIndexChanged(taskPicker) {
