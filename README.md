@@ -13,6 +13,46 @@ Members
 
 ![iphone_6_both](https://cloud.githubusercontent.com/assets/18379191/18569614/9a2a2eb8-7b9b-11e6-8d6c-79c84ea5d782.png)
 
+Installation
+------------
+Please refer to the official [Nativescript documentation](http://docs.nativescript.org/angular/start/quick-setup.html) on preparing your system in detail. The following instructions are for OSX users as they will be able to use both iOS and android platforms.
+
+To quickly set up your system for the latest NativeScript CLI, paste the following Ruby script in the terminal and hit `Enter`:
+
+```
+$ sudo ruby -e "$(curl -fsSL https://www.nativescript.org/setup/mac)"
+```
+Install the Nativescript CLI:
+```
+$ npm install nativescript -g
+```
+Check that everything is setup correctly:
+```
+$ tns doctor
+```
+
+Running the app
+---------------
+Clone the repository to your local machine:
+```
+$ git clone https://github.com/MakeItStop/task-based-alarm
+$ cd task-based-alarm
+```
+Make sure you have all the app dependencies:
+```
+$ npm install
+```
+Add the Android and iOS platforms to the project:
+```
+$ tns platform add android
+$ tns platform add ios
+```
+Run and enjoy MakeItStop! on the iPhone/android emulators:
+```
+$ tns run ios --emulator
+$ tns run android --emulator
+```
+
 Demonstration
 -------------
 [![MakeItStop! Demo](https://cloud.githubusercontent.com/assets/18379191/18570175/c467eb58-7b9f-11e6-8957-2f55b19d0b72.png)](https://www.youtube.com/watch?v=WGuyOzGttv0 "MakeItStop! Demo")
@@ -85,8 +125,9 @@ So that I can further decide how easy it is for me to stay awake
 I would like to be able to choose a task difficulty
 
 ```
+
 Future implementations
-======================
+----------------------
 
 Features
 ------------------
