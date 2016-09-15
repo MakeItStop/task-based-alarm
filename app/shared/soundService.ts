@@ -8,24 +8,25 @@ let timer = require('timer');
 export class SoundService {
   public alarmLooper = {};
   public currentSound = applicationSettings.getString("sound", "alarm");
+  public ALARMLOOPTIME = 4100
 
   private sounds: any = {
-    "foghorn": [sound.create("~/sounds/Foghorn.mp3"), 5100],
-    "alarm": [sound.create("~/sounds/Alarm_Clock.mp3"),21100],
-    "bomb_siren": [sound.create("~/sounds/Bomb_Siren.mp3"),21100],
-    "railroad": [sound.create("~/sounds/Railroad.mp3"),45100],
-    "warning": [sound.create("~/sounds/Warning.mp3"),39100]
+    "foghorn": sound.create("~/sounds/Foghorn.mp3"),
+    "alarm": sound.create("~/sounds/Alarm_Clock.mp3"),
+    "bomb_siren": sound.create("~/sounds/Bomb_Siren.mp3"),
+    "railroad": sound.create("~/sounds/Railroad.mp3"),
+    "warning": sound.create("~/sounds/Warning.mp3"),
   };
 
   public playAlarm() {
-    this.sounds[this.currentSound][0].play();
+    this.sounds[this.currentSound].play();
     this.alarmLooper = timer.setInterval(() => {
-      this.sounds[this.currentSound][0].play();
-    }, this.sounds[this.currentSound][1]);
+      this.sounds[this.currentSound].play();
+    }, this.ALARMLOOPTIME);
   }
 
   public stopAlarm() {
-    this.sounds[this.currentSound][0].stop();
+    this.sounds[this.currentSound].stop();
     timer.clearInterval(this.alarmLooper);
   }
 }
