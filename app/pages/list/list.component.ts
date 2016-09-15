@@ -5,6 +5,8 @@ import { Page } from 'ui/page';
 import { Router } from "@angular/router";
 import * as moment from "moment";
 
+let taskList = ["tap","maths","slider", "gesture", "memory"];
+
 @Component({
   selector: "list",
   templateUrl: "pages/list/list.component.html",
@@ -14,7 +16,7 @@ export class ListPage implements OnInit {
 
   constructor(private _router: Router) {}
 
-  private _selectedTask = applicationSettings.getString("task");
+  public selectedTask = this._getTask();
   private _timeString = applicationSettings.getNumber("hour") + ":" + applicationSettings.getNumber("minute");
   private _now = moment();
   private _plusDays = applicationSettings.getNumber("plusDays")
@@ -23,17 +25,34 @@ export class ListPage implements OnInit {
 
   public formattedAlarmTime = moment(this._timeString, "HH:mm").format("HH:mm");
 
-  ngOnInit() {
-    if (global.alarmTimer) {
-      timer.clearTimeout(global.alarmTimer);
+  private _getTask(){
+    let task = applicationSettings.getString("task", "tap");
+    if (task === 'random') {
+      return this._getRandomItemFrom(taskList);
     }
-    global.alarmTimer = timer.setTimeout(() => {
-      this._router.navigate([this._selectedTask]);
-    }, this._until)
+    return task;
   }
 
-  seeAlarm() {
-    this._router.navigate([this._selectedTask]);
+  private _getRandomItemFrom(array) {
+    let randomIndex = Math.floor(Math.random() * (array.length - 1));
+    return array[randomIndex];
+  }
+
+  ngOnInit() {
+    global.alarmTimer ? this._clearAlarm() : this._startAlarmTimer();
+  }
+
+  private _clearAlarm() {
+    timer.clearTimeout(global.alarmTimer);
+  }
+
+  private _startAlarmTimer() {
+    global.alarmTimer = timer.setTimeout(() => {
+      this.triggerAlarm();
+    }, this._until)
+  }
+  public triggerAlarm() {
+    this._router.navigate([this.selectedTask]);
   }
 
 }

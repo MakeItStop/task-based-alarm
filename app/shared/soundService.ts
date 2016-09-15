@@ -20,12 +20,12 @@ export class SoundService {
   private _getSound() {
     let sound = applicationSettings.getString("sound", "alarm");
     if (sound === "random") {
-      return this._getRandomIndexFrom(Object.keys(this.sounds));
+      return this._getRandomItemFrom(Object.keys(this.sounds));
     }
     return sound;
   }
 
-  private _getRandomIndexFrom(array) {
+  private _getRandomItemFrom(array) {
     let randomIndex = Math.floor(Math.random() * (array.length - 1));
     return array[randomIndex];
   }

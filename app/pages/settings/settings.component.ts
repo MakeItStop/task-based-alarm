@@ -5,7 +5,6 @@ import { Router } from "@angular/router";
 import { Page } from "ui/page";
 import { Slider } from "ui/slider";
 
-
 let taskList = ["tap","maths","slider", "gesture", "memory", "random"];
 let soundList = ["foghorn","alarm", "bomb_siren", "railroad", "warning", "random"];
 
@@ -18,11 +17,8 @@ let soundList = ["foghorn","alarm", "bomb_siren", "railroad", "warning", "random
 export class SettingsPage {
   private _currentTask = "";
   private _currentSound = "";
-  private _randomIndex = Math.floor(Math.random()* 5);
-
   public tasks: Array<string>;
   public sounds: Array<string>;
-
   public savedTask = applicationSettings.getString("task", "tap");
   public savedSound = applicationSettings.getString("sound", "foghorn");
   public savedDifficulty = applicationSettings.getNumber("memoryDifficulty");
@@ -47,17 +43,11 @@ export class SettingsPage {
   }
 
   public selectedIndexChanged(taskPicker) {
-    if (taskPicker.selectedIndex === 5) {
-      taskPicker.selectedIndex = this._randomIndex;
-    }
     this._currentTask = taskList[taskPicker.selectedIndex] || "tap";
     this._storeString("task", this._currentTask);
   }
 
   public selectedSoundIndexChanged(soundPicker) {
-    // if (soundPicker.selectedIndex === 5) {
-    //   soundPicker.selectedIndex = this._randomIndex;
-    // }
     this._currentSound = soundList[soundPicker.selectedIndex] || "alarm";
     this._storeString("sound", this._currentSound);
 
