@@ -3,10 +3,10 @@
 
 ## Team
 
-* Sam
-* Luke
-* Prashant
-* Rich
+* <a href="https://github.com/samjbro">Sam</a>
+* <a href="https://github.com/lukecartledge">Luke</a>
+* <a href="https://github.com/prashantmathias">Prashant</a>
+* <a href="https://github.com/richo225">Rich</a>
 
 ## App Description
 
