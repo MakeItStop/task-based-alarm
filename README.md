@@ -1,7 +1,7 @@
 Make It Stop!
 =============
 
-A task based alarm app built using <a href="https://github.com/NativeScript">Nativescript</a> for people who find it hard to wake up in the morning. To stop the alarm, the user must complete a task, answer a question or complete a mini game. This app was a two week project in our final 10th and 11th weeks of the [MakersAcademy](https://github.com/makersacademy) bootcamp.
+A task based alarm app built using <a href="https://github.com/NativeScript">Nativescript</a> for people who find it hard to wake up in the morning. To stop the alarm, the user must complete a task, answer a question or complete a mini game. This app was a two week project in our final 10th and 11th weeks of the [MakersAcademy](https://github.com/makersacademy) bootcamp. Try it out on this [simulator](https://appetize.io/app/9u8mc98n64duqbtp8puja2thhm?device=iphone6&scale=75&orientation=portrait&osVersion=9.3).
 
 Members
 -------
