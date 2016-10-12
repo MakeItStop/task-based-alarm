@@ -23,7 +23,6 @@ let COLORS = ["yellow","red","purple",
   styleUrls: ["pages/memory/memory-common.css"],
   providers: [SoundService]
 })
-
 export class MemoryPage implements OnInit {
   public taskPassed = false;
   public selectedTiles = [];
@@ -59,8 +58,8 @@ export class MemoryPage implements OnInit {
     for (var tileIndex = 0; tileIndex < this._maxTiles; tileIndex++) {
       this._createTile(tileIndex, colors);
     }
-    for (var tile = 0; tile < this.tiles.length; tile++){
-    }
+    // for (var tile = 0; tile < this.tiles.length; tile++){
+    // }
   }
 
   private _createTile(index, colors) {
@@ -100,7 +99,9 @@ export class MemoryPage implements OnInit {
   }
 
   private _addToSelectedTiles(tile) {
-    this.selectedTiles.push(tile);
+    if (this.selectedTiles.indexOf(tile) == -1) {
+      this.selectedTiles.push(tile);
+    }
   }
 
   private _twoTilesFlipped() {
