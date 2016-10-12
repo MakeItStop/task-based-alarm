@@ -99,7 +99,7 @@ export class MemoryPage implements OnInit {
   }
 
   private _addToSelectedTiles(tile) {
-    if (this.selectedTiles.indexOf(tile) != -1) {
+    if (this.selectedTiles.indexOf(tile) == -1) {
       this.selectedTiles.push(tile);
     }
   }

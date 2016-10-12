@@ -69,6 +69,13 @@ describe("Tests for Memory component", function() {
       expect(memoryGame.selectedTiles).toContain(tile)
     });
 
+    it("cannot add the same tile more than once", function(){
+      var tile = jasmine.createSpyObj(Tile, ['id'])
+      memoryGame.chooseTile(tile)
+      memoryGame.chooseTile(tile)
+      expect(memoryGame.selectedTiles.length).toEqual(1)
+    });
+
 
     describe("tile matching", function() {
 
@@ -109,12 +116,14 @@ describe("Tests for Memory component", function() {
       });
 
       it("matching final pair completes task", function() {
-        var tile = jasmine.createSpyObj(Tile, ['id'])
-        tile.id = "red"
+        memoryGame._maxTiles = 2
+        var tile1 = jasmine.createSpyObj(Tile, ['id'])
+        var tile2 = jasmine.createSpyObj(Tile, ['id'])
+        tile1.id = "red"
+        tile2.id = "red"
 
-        for(var i=0; i<memoryGame._maxTiles; i+=1){
-          memoryGame.chooseTile(tile)
-        }
+        memoryGame.chooseTile(tile1)
+        memoryGame.chooseTile(tile2)
 
         expect(memoryGame.taskPassed).toEqual(true)
       });
