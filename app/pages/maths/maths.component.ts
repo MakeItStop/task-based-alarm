@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import { Router } from "@angular/router";
 import { Page } from "ui/page";
 import { SoundService } from "../../shared/soundService";
+import * as applicationSettings from "application-settings";
 let timer = require('timer');
 
 @Component({
@@ -16,10 +17,10 @@ export class MathsPage implements OnInit {
   public answer = null;
   private _numberArray = []
   private _ARRAYMAX = 4;
-  private _NEGATIVEOFFSET = 50;
-  private _RANDOMLIMIT = 100;
+  private _difficulty = applicationSettings.getNumber("memoryDifficulty", 10);
+  private _RANDOMLIMIT = this._difficulty * 20;
+  private _NEGATIVEOFFSET = this._RANDOMLIMIT / 2;
   private _numberStringArray = [];
-
 
   constructor(private _router: Router, private _soundModule: SoundService) {
     for (var i = 0; i < this._ARRAYMAX; i++) {
