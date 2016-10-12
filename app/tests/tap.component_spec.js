@@ -1,12 +1,13 @@
 var reflect = require("reflect-metadata");
 var component = require("../pages/tap/tap.component");
+var appSettings = require("application-settings");
 
 describe("Tests for /pages/tap/tap.component.ts", function() {
 
   var tapComponent;
   beforeEach(function() {
-     tapComponent = new component.TapPage();
-
+    spyOn(appSettings, 'getNumber').and.returnValue(1.6);
+    tapComponent = new component.TapPage();   
   });
 
   it("Verify default message", function() {

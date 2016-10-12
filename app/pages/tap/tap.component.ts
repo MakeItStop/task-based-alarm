@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import { Router } from "@angular/router";
 import { Page } from "ui/page";
 import { SoundService } from "../../shared/soundService";
+import * as applicationSettings from "application-settings";
 
 @Component({
     selector: "tap",
@@ -10,8 +11,10 @@ import { SoundService } from "../../shared/soundService";
     styleUrls: ["pages/tap/tap.component.css"]
 })
 export class TapPage implements OnInit {
-  public counter: number = 16;
+  private _difficulty = applicationSettings.getNumber("memoryDifficulty", 10);
+  public counter: number = this._difficulty * 10;
   private taskPassed = false;
+
 
   constructor(private _router: Router, private _soundModule: SoundService) {}
 
