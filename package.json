@@ -9,7 +9,7 @@
       "version": "2.2.1"
     },
     "tns-android": {
-      "version": "2.2.0"
+      "version": "2.3.0"
     }
   },
   "dependencies": {
@@ -26,12 +26,13 @@
     "nativescript-accelerometer": "^0.3.2",
     "nativescript-angular": "^0.3.0",
     "nativescript-awesome-loaders": "^1.2.1",
+    "nativescript-insomnia": "^1.2.0",
     "nativescript-physics-js": "^1.0.5",
     "nativescript-sound": "^1.0.4",
     "nativescript-unit-test-runner": "^0.3.3",
     "reflect-metadata": "^0.1.5",
     "rxjs": "5.0.0-beta.6",
-    "tns-core-modules": "^2.2.1",
+    "tns-core-modules": "^2.3.0",
     "zone.js": "0.6.12"
   },
   "devDependencies": {
