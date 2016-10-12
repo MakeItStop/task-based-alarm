@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 import { Page } from "ui/page";
 import { SwipeGestureEventData, PinchGestureEventData, RotationGestureEventData } from "ui/gestures";
 import { SoundService } from "../../shared/soundService";
+import * as applicationSettings from "application-settings";
+
 let timer = require('timer');
 
 @Component({
@@ -12,19 +14,24 @@ let timer = require('timer');
     styleUrls: ["pages/gesture/gesture.component.css"]
 })
 export class GesturePage implements OnInit {
-  private longPress = false;
-  private swipeLeft = false;
-  private pinch = false;
-  private rotate = false;
+  private _difficulty = Math.ceil((applicationSettings.getNumber("memoryDifficulty", 10) / 2));
+  private longPressCounter = this._difficulty;
+  private swipeLeftCounter = this._difficulty;
+  private pinchCounter = this._difficulty;
+  private rotateCounter = this._difficulty;
 
   constructor(private _router: Router, private _soundModule: SoundService) {}
 
   private _taskStop() {
-    if (this.longPress && this.swipeLeft && this.pinch && this.rotate === true) {
+    if (this._allCountersAtZero()) {
       this.alarmOff();
       timer.setTimeout(() => {
          this.routeToHome() }, 500);
     }
+  }
+
+  private _allCountersAtZero() {
+    (this.longPressCounter + this.swipeLeftCounter + this.pinchCounter + this.rotateCounter) === 0
   }
 
   routeToHome(){
@@ -36,32 +43,32 @@ export class GesturePage implements OnInit {
   }
 
   public get longPressMessage() : string {
-    if (!this.longPress) {
-      return "Press and hold here";
+    if (this.longPressCounter > 0) {
+      return "Press and hold here x" + this.longPressCounter;
     } else {
       return "Success!!";
     }
   }
 
   public get swipeMessage() : string {
-    if (!this.swipeLeft) {
-      return "Swipe LEFT here"
+    if (this.swipeLeftCounter > 0) {
+      return "Swipe LEFT here x" + this.swipeLeftCounter;
     } else {
       return "Success!!";
     }
   }
 
   public get pinchMessage() : string {
-    if (!this.pinch) {
-      return "Pinch here"
+    if (this.pinchCounter > 0) {
+      return "Pinch here x" + this.pinchCounter;
     } else {
       return "Success!!";
     }
   }
 
   public get rotateMessage() : string {
-    if (!this.rotate) {
-      return "Rotate here"
+    if (this.rotateCounter > 0) {
+      return "Rotate here x" + this.rotateCounter;
     } else {
       return "Success!!";
     }
@@ -72,27 +79,31 @@ export class GesturePage implements OnInit {
   }
 
   onLongPress() {
-    this._taskStop()
-    this.longPress = true;
+    if(this.longPressCounter > 0) {
+      this.longPressCounter -= 1;
+    }
+    this._taskStop();
   }
 
   onSwipe(args: SwipeGestureEventData) {
-    if (args.direction === 2) {
-      this.swipeLeft = true;
-      this._taskStop()
+    if (args.direction === 2 && this.swipeLeftCounter > 0) {
+      this.swipeLeftCounter -= 1;
     }
+    this._taskStop()
   }
 
   onPinch(args: PinchGestureEventData) {
-    this.pinch = true;
+    if(this.pinchCounter > 0) {
+      this.pinchCounter -= 1;
+    }
     this._taskStop()
   }
 
   onRotate(args: RotationGestureEventData) {
-    if (args.rotation > 89) {
-      this.rotate = true;
-      this._taskStop()
+    if (args.rotation > 89 && this.rotateCounter > 0) {
+      this.rotateCounter -= 1;
     }
+    this._taskStop()
   }
 
   alarmOff() {
