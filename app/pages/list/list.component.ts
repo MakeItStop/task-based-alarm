@@ -1,4 +1,5 @@
 let timer = require('timer');
+let insomnia = require("nativescript-insomnia")
 import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import * as applicationSettings from "application-settings";
 import { Page } from 'ui/page';
@@ -13,7 +14,7 @@ let taskList = ["tap","maths","slider", "gesture", "memory"];
   styleUrls: ["pages/list/list.component.css"]
 })
 export class ListPage implements OnInit {
-  constructor(private _router: Router) {}
+  constructor(private _router: Router) { }
 
   public selectedTask = this._getTask();
   private _timeString = applicationSettings.getNumber("hour", 9) + ":" + applicationSettings.getNumber("minute", 25);
@@ -38,7 +39,11 @@ export class ListPage implements OnInit {
   }
 
   ngOnInit() {
-    global.alarmTimer ? this._clearAlarm() : this._startAlarmTimer();
+    if (global.alarmTimer) { this._clearAlarm() }
+    this._startAlarmTimer();
+    insomnia.keepAwake().then(function() {
+      console.log("Insomnia is active");
+    })
   }
 
   private _clearAlarm() {

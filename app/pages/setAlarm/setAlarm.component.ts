@@ -1,3 +1,4 @@
+let insomnia = require('nativescript-insomnia')
 import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import { TimePicker } from "ui/time-picker";
 import * as applicationSettings from "application-settings";
@@ -11,13 +12,19 @@ import { Page } from "ui/page";
   styleUrls: ["pages/setAlarm/setAlarm.component.css"]
 })
 
-export class SetAlarmPage {
+export class SetAlarmPage implements OnInit {
 
   constructor(private _router: Router) {
 
     if (applicationSettings.getString("task") === "") {
       applicationSettings.setString("task", "tap");
     }
+  }
+
+  ngOnInit() {
+    insomnia.allowSleepAgain().then(function(){
+      console.log("Insomnia is inactive, good night!");
+    })
   }
 
   public configureTime(timePicker: TimePicker) {
