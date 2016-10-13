@@ -4,35 +4,31 @@
 <StackLayout>
 
   <Label [text]="expectedMessage" class="title"></Label>
+  <Label [text]="totalMessage"></Label>
 
-  <Label [text]="slider1.value"></Label>
+  <Label [text]="maxMessage"></Label>
   <Slider #slider1 id="slider1"
   [value]=""
-  (valueChange)="valueChanged(slider1)"
   value="" minValue="0" [maxValue]="SLIDERLIMIT"></Slider>
 
-  <Label [text]="slider2.value"></Label>
   <Slider #slider2
   [value]=""
-  (valueChange)="valueChanged(slider2)"
   value="" minValue="0" [maxValue]="SLIDERLIMIT"></Slider>
 
-  <Label [text]="slider3.value"></Label>
   <Slider #slider3
   [value]=""
-  (valueChange)="valueChanged(slider3)"
   value="" minValue="0" [maxValue]="SLIDERLIMIT"></Slider>
 
-  <Label [text]="slider4.value"></Label>
   <Slider #slider4
   [value]=""
-  (valueChange)="valueChanged(slider4)"
   value="" minValue="0" [maxValue]="SLIDERLIMIT"></Slider>
 
-  <Label [text]="slider5.value"></Label>
   <Slider #slider5
   [value]=""
-  (valueChange)="valueChanged(slider5)"
   value="" minValue="0" [maxValue]="SLIDERLIMIT"></Slider>
+
+  <Button text="Check"
+  (tap)="sliderTotal(slider1.value,slider2.value,slider3.value,slider4.value,slider5.value)">
+  </Button>
 
 </StackLayout>
