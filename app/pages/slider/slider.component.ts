@@ -3,6 +3,7 @@ import { Slider } from "ui/slider";
 import { Router } from "@angular/router";
 import { PropertyChangeData } from "data/observable";
 import { SoundService } from "../../shared/soundService";
+import * as applicationSettings from "application-settings";
 let timer = require('timer');
 
 @Component({
@@ -13,7 +14,13 @@ let timer = require('timer');
 })
 
 export class SliderPage implements OnInit {
-  private sliderCounter: number = 0;
+  private _difficulty = applicationSettings.getNumber("memoryDifficulty", 10);
+  public SLIDERLIMIT = this._difficulty * 2;
+  public EXPECTEDSUM = Math.ceil(Math.random()*this.SLIDERLIMIT * 5);
+  public CURRENTTOTAL = 0;
+  public expectedMessage = `Slide to a total of ${this.EXPECTEDSUM}`;
+  public totalMessage = `Current total: ${this.CURRENTTOTAL}`;
+  public maxMessage = `Slider max: ${this.SLIDERLIMIT}`;
 
   constructor(private _router: Router, private _soundModule: SoundService) {}
 
@@ -21,21 +28,16 @@ export class SliderPage implements OnInit {
     this._soundModule.playAlarm();
   }
 
-  private _taskStop() {
-    if (this.sliderCounter === 5) {
+  private _taskStop(total) {
+    if (Math.ceil(total) === this.EXPECTEDSUM) {
       this.alarmOff();
-
       timer.setTimeout(() => {
         this.routeToHome();
       }, 500);
-    }
-  }
-
-  valueChanged(slider) {
-    if (slider.value === slider.maxValue) {
-      slider.isUserInteractionEnabled = false;
-      this.sliderCounter++;
-      this._taskStop();
+    } else {
+      this.CURRENTTOTAL = Math.ceil(total);
+      console.log("TOTAL>>>>>>>" + total);
+      this.totalMessage = `Current total: ${this.CURRENTTOTAL}`;
     }
   }
 
@@ -46,5 +48,13 @@ export class SliderPage implements OnInit {
   routeToHome(){
     this._router.navigate([""]);
   };
+
+  sliderTotal(one,two,three,four,five){
+    // var args = [...arguments];
+    var total = one + two + three + four + five;
+    // var total = args.reduce((pre, cur) => pre + cur);
+    this._taskStop(total);
+  }
+
 
 }
