@@ -3,6 +3,7 @@ import { Slider } from "ui/slider";
 import { Router } from "@angular/router";
 import { PropertyChangeData } from "data/observable";
 import { SoundService } from "../../shared/soundService";
+import * as applicationSettings from "application-settings";
 let timer = require('timer');
 
 @Component({
@@ -13,7 +14,13 @@ let timer = require('timer');
 })
 
 export class SliderPage implements OnInit {
-  private sliderCounter: number = 0;
+  private _difficulty = applicationSettings.getNumber("memoryDifficulty", 10);
+  public sliderLimit = this._difficulty * 2;
+  private _expectedSum = Math.ceil(Math.random()*this.sliderLimit * 2)+ this.sliderLimit*2;
+  private _CURRENTTOTAL = 0;
+  public expectedMessage = `Slide to a total of ${this._expectedSum}`;
+  public totalMessage = `Current total: ${this._CURRENTTOTAL}`;
+  public maxMessage = `Slider max: ${this.sliderLimit}`;
 
   constructor(private _router: Router, private _soundModule: SoundService) {}
 
@@ -21,22 +28,24 @@ export class SliderPage implements OnInit {
     this._soundModule.playAlarm();
   }
 
-  private _taskStop() {
-    if (this.sliderCounter === 5) {
-      this.alarmOff();
-
-      timer.setTimeout(() => {
-        this.routeToHome();
-      }, 500);
+  private _taskStop(total) {
+    if (Math.ceil(total) === this._expectedSum) {
+      this.endTask();
+    } else {
+      this.updateMessage(total);
     }
   }
 
-  valueChanged(slider) {
-    if (slider.value === slider.maxValue) {
-      slider.isUserInteractionEnabled = false;
-      this.sliderCounter++;
-      this._taskStop();
-    }
+  updateMessage(total) {
+    this._CURRENTTOTAL = Math.ceil(total);
+    this.totalMessage = `Current total: ${this._CURRENTTOTAL}`;
+  }
+
+  endTask() {
+    this.alarmOff();
+    timer.setTimeout(() => {
+      this.routeToHome();
+    }, 500);
   }
 
   alarmOff() {
@@ -46,5 +55,11 @@ export class SliderPage implements OnInit {
   routeToHome(){
     this._router.navigate([""]);
   };
+
+  sliderTotal(one,two,three,four,five){
+    var total = one.value + two.value + three.value + four.value;
+    this._taskStop(total);
+  }
+
 
 }
