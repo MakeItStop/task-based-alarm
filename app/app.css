@@ -59,15 +59,3 @@ Slider {
 .alarm-time{
   font-size: 60;
 }
-
-.gesture-space {
-    height: 90;
-    width: 100%;
-    margin: 20 0;
-    border-color: #ffffff;
-    border-width: 1;
-    border-radius: 5;
-    text-align: center;
-    font-size: 30;
-    horizontal-align: center;
-}

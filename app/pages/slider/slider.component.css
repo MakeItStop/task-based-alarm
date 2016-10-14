@@ -1,5 +1,18 @@
 Slider {
-  margin-left: 20;
-  margin-right: 20;
+  /*margin-left: 10;
+  margin-right: 10;*/
   margin-bottom: 50;
+  horizontal-align: stretch;
+
+
+}
+
+.title {
+  background-color: transparent;
+  horizontal-align: stretch;
+}
+
+.homeButton {
+  background-color: #ffffff;
+  color: #525478;
 }

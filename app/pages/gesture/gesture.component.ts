@@ -19,19 +19,25 @@ export class GesturePage implements OnInit {
   private swipeLeftCounter = this._difficulty;
   private pinchCounter = this._difficulty;
   private rotateCounter = this._difficulty;
+  public taskPassed = false;
 
   constructor(private _router: Router, private _soundModule: SoundService) {}
 
   private _taskStop() {
     if (this._allCountersAtZero()) {
-      this.alarmOff();
-      timer.setTimeout(() => {
-         this.routeToHome() }, 500);
+      this.taskPassed = true;
     }
   }
 
+  onTap() {
+    this.alarmOff();
+    timer.setTimeout(() => {
+       this.routeToHome() }, 500);
+
+  }
+
   private _allCountersAtZero() {
-    (this.longPressCounter + this.swipeLeftCounter + this.pinchCounter + this.rotateCounter) === 0
+    return (this.longPressCounter + this.swipeLeftCounter + this.pinchCounter + this.rotateCounter) === 0
   }
 
   routeToHome(){

@@ -1,7 +1,9 @@
 <ActionBar title="Gestures">
 </ActionBar>
 <StackLayout>
-
+  <Button [text]="taskPassed ? 'Make It Stop!' : 'Complete the Gestures'" (tap)="onTap()" class="title"
+    [class.homeButton]="taskPassed" textWrap="true">
+  </Button>
   <label class="gesture-space" [text]="longPressMessage" (longPress)="onLongPress($event)"></label>
 
   <Label class="gesture-space" [text]="rotateMessage" (rotation)="onRotate($event)"></Label>

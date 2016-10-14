@@ -1,0 +1,17 @@
+
+#check {
+  margin-top: 20
+}
+
+
+.title {
+  margin-top: 75;
+  margin-bottom: 10;
+  background-color: transparent;
+  horizontal-align: stretch;
+}
+
+.homeButton {
+  background-color: #ffffff;
+  color: #525478;
+}

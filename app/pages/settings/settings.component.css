@@ -1,0 +1,13 @@
+Button {
+    background-color: #ffffff;
+    color: #525478;
+}
+
+Slider {
+  width: 75%;
+}
+
+ListPicker {
+  width: 50%;
+  color: white;
+}
