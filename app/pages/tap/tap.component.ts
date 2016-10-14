@@ -31,10 +31,14 @@ export class TapPage implements OnInit {
     this._soundModule.playAlarm();
   }
 
-  onTap() {
+  decrementCounter() {
     if (!this.taskPassed) {
       this.counter--;
-    } else {
+    }
+  }
+
+  onTap() {
+    if(this.taskPassed) {
       this.alarmOff()
       this.routeToHome();
     }

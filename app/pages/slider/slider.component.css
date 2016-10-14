@@ -7,7 +7,12 @@ Slider {
 
 }
 
-#title {
+.title {
   background-color: transparent;
   horizontal-align: stretch;
+}
+
+.homeButton {
+  background-color: #ffffff;
+  color: #525478;
 }

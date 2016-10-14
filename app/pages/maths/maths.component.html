@@ -2,7 +2,7 @@
 </ActionBar>
 <StackLayout>
 
-    <Button [text]="taskPassed ? 'Make It Stop!' : question" (tap)="onTap()" id="title" textWrap="true"></Button>
+    <Button [text]="taskPassed ? 'Make It Stop!' : question" (tap)="onTap()" class="title" [class.homeButton]="taskPassed" textWrap="true"></Button>
 
     <TextField hint="Enter number" [(ngModel)]="answer"></TextField>
 

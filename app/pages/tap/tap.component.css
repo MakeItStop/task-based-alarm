@@ -8,10 +8,18 @@ Button {
     text-align: center;
 }
 
-#message {
+.message {
   margin: 20 0;
+  background-color: #525478;
+  color: #ffffff;
 }
 
 Label {
   font-size: 28;
+}
+
+
+.homeButton {
+  background-color: #ffffff;
+  color: #525478;
 }

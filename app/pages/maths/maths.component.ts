@@ -61,6 +61,7 @@ export class MathsPage implements OnInit {
   checkSum() {
     if (this.answer == this._sumNumbers()) {
       this.taskPassed = true;
+
     } else {
       alert("Incorrect - try again!")
     }
