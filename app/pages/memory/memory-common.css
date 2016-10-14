@@ -4,8 +4,15 @@ Button {
   margin: 2;
 }
 
-#title {
-  background-color: transparent;
+.title {
+  background-color: #525478;
+  color: #ffffff;
+}
+
+.homeButton {
+  background-color: #ffffff;
+  color: #525478;
+  width: 60%;
 }
 
 #endAlarm {

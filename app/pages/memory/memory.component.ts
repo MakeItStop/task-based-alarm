@@ -14,7 +14,7 @@ let COLORS = ["yellow","red","purple",
   selector: "memory",
   template:`
             <StackLayout>
-              <Button [text]="taskPassed ? 'Make It Stop!' : 'Test Your Memory'" (tap)="onTap()" id="title"></Button>
+              <Button [text]="taskPassed ? 'Make It Stop!' : 'Match the Tiles'" (tap)="onTap()" class="title" [class.homeButton]="taskPassed"></Button>
               <GridLayout [rows]="displayRows" [columns]="displayColumns">
                   <Button *ngFor="let tile of tiles" [row]='tile.row' [col]='tile.col' (tap)="chooseTile(tile)" [class.selected]="selectedTiles.includes(tile)" [id]="tile.id"></Button>
               </GridLayout>
