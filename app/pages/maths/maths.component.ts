@@ -13,7 +13,7 @@ let timer = require('timer');
 })
 export class MathsPage implements OnInit {
 
-  private _taskPassed = false;
+  public taskPassed = false;
   public answer = null;
   private _numberArray = []
   private _ARRAYMAX = 4;
@@ -51,10 +51,18 @@ export class MathsPage implements OnInit {
   public get message(): string{
 
     if (this.answer == this._sumNumbers()) {
-      this._taskPassed = true;
+      this.taskPassed = true;
       return "Correct!!"
     } else {
       return "Try again";
+    }
+  }
+
+  checkSum() {
+    if (this.answer == this._sumNumbers()) {
+      this.taskPassed = true;
+    } else {
+      alert("Incorrect - try again!")
     }
   }
 
@@ -65,9 +73,11 @@ export class MathsPage implements OnInit {
 
   onTap() {
     console.log("solution>>" + this._sumNumbers())
-    if (this._taskPassed) {
+    if (this.taskPassed) {
       this._soundModule.stopAlarm();
       this._router.navigate([""]);
+    } else {
+      alert("Complete the task first!")
     }
   }
 

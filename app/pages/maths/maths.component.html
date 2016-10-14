@@ -1,11 +1,12 @@
 <ActionBar title="Maths">
 </ActionBar>
 <StackLayout>
-    <Label [text]="question" class="title" textWrap="true"></Label>
+
+    <Button [text]="taskPassed ? 'Make It Stop!' : question" (tap)="onTap()" id="title" textWrap="true"></Button>
 
     <TextField hint="Enter number" [(ngModel)]="answer"></TextField>
 
-    <Button text="Submit" (tap)="onTap()"></Button>
+    <Button id="check" text="Check Sum" class="message" textWrap="true" (tap)="checkSum()"
+    [style]="taskPassed ? 'visibility:collapsed' : 'visibility:visible'"></Button>
 
-    <Label [text]="message" class="message" textWrap="true"></Label>
 </StackLayout>

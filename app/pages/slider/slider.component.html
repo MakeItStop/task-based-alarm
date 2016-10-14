@@ -22,7 +22,8 @@
   value="" minValue="0" [maxValue]="sliderLimit"></Slider>
 
   <Button text="Check Sum"
-  (tap)="sliderTotal(slider1,slider2,slider3,slider4)">
+  (tap)="sliderTotal(slider1,slider2,slider3,slider4)"
+  [style]="taskPassed ? 'visibility:collapsed' : 'visibility:visible'">
   </Button>
 
 </StackLayout>
