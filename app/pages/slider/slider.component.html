@@ -9,26 +9,21 @@
   <Label [text]="maxMessage"></Label>
   <Slider #slider1 id="slider1"
   [value]=""
-  value="" minValue="0" [maxValue]="SLIDERLIMIT"></Slider>
-
+  value="" minValue="0" [maxValue]="sliderLimit"></Slider>
   <Slider #slider2
   [value]=""
-  value="" minValue="0" [maxValue]="SLIDERLIMIT"></Slider>
+  value="" minValue="0" [maxValue]="sliderLimit"></Slider>
 
   <Slider #slider3
   [value]=""
-  value="" minValue="0" [maxValue]="SLIDERLIMIT"></Slider>
+  value="" minValue="0" [maxValue]="sliderLimit"></Slider>
 
   <Slider #slider4
   [value]=""
-  value="" minValue="0" [maxValue]="SLIDERLIMIT"></Slider>
+  value="" minValue="0" [maxValue]="sliderLimit"></Slider>
 
-  <Slider #slider5
-  [value]=""
-  value="" minValue="0" [maxValue]="SLIDERLIMIT"></Slider>
-
-  <Button text="Check"
-  (tap)="sliderTotal(slider1.value,slider2.value,slider3.value,slider4.value,slider5.value)">
+  <Button text="Check Sum"
+  (tap)="sliderTotal(slider1,slider2,slider3,slider4)">
   </Button>
 
 </StackLayout>

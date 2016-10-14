@@ -15,12 +15,12 @@ let timer = require('timer');
 
 export class SliderPage implements OnInit {
   private _difficulty = applicationSettings.getNumber("memoryDifficulty", 10);
-  public SLIDERLIMIT = this._difficulty * 2;
-  public EXPECTEDSUM = Math.ceil(Math.random()*this.SLIDERLIMIT * 5);
-  public CURRENTTOTAL = 0;
-  public expectedMessage = `Slide to a total of ${this.EXPECTEDSUM}`;
-  public totalMessage = `Current total: ${this.CURRENTTOTAL}`;
-  public maxMessage = `Slider max: ${this.SLIDERLIMIT}`;
+  public sliderLimit = this._difficulty * 2;
+  private _expectedSum = Math.ceil(Math.random()*this.sliderLimit * 2)+ this.sliderLimit*2;
+  private _CURRENTTOTAL = 0;
+  public expectedMessage = `Slide to a total of ${this._expectedSum}`;
+  public totalMessage = `Current total: ${this._CURRENTTOTAL}`;
+  public maxMessage = `Slider max: ${this.sliderLimit}`;
 
   constructor(private _router: Router, private _soundModule: SoundService) {}
 
@@ -29,16 +29,23 @@ export class SliderPage implements OnInit {
   }
 
   private _taskStop(total) {
-    if (Math.ceil(total) === this.EXPECTEDSUM) {
-      this.alarmOff();
-      timer.setTimeout(() => {
-        this.routeToHome();
-      }, 500);
+    if (Math.ceil(total) === this._expectedSum) {
+      this.endTask();
     } else {
-      this.CURRENTTOTAL = Math.ceil(total);
-      console.log("TOTAL>>>>>>>" + total);
-      this.totalMessage = `Current total: ${this.CURRENTTOTAL}`;
+      this.updateMessage(total);
     }
+  }
+
+  updateMessage(total) {
+    this._CURRENTTOTAL = Math.ceil(total);
+    this.totalMessage = `Current total: ${this._CURRENTTOTAL}`;
+  }
+
+  endTask() {
+    this.alarmOff();
+    timer.setTimeout(() => {
+      this.routeToHome();
+    }, 500);
   }
 
   alarmOff() {
@@ -50,9 +57,7 @@ export class SliderPage implements OnInit {
   };
 
   sliderTotal(one,two,three,four,five){
-    // var args = [...arguments];
-    var total = one + two + three + four + five;
-    // var total = args.reduce((pre, cur) => pre + cur);
+    var total = one.value + two.value + three.value + four.value;
     this._taskStop(total);
   }
 
