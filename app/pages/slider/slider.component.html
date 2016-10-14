@@ -2,8 +2,7 @@
 </ActionBar>
 
 <StackLayout>
-
-  <Label [text]="expectedMessage" class="title"></Label>
+  <Button [text]="taskPassed ? 'Make It Stop!' : expectedMessage" (tap)="onTap()" id="title"></Button>
   <Label [text]="totalMessage"></Label>
 
   <Label [text]="maxMessage"></Label>
