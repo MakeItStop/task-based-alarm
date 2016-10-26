@@ -2,9 +2,12 @@
   "description": "NativeScript Application",
   "license": "SEE LICENSE IN <your-license-filename>",
   "readme": "NativeScript Application",
-  "repository": "<fill-your-repository-here>",
+  "repository": {
+      "type": "git",
+      "url": "git://github.com/MakeItStop"
+  },
   "nativescript": {
-    "id": "org.nativescript.taskbasedalarm",
+    "id": "com.makeitstop.alarm",
     "tns-ios": {
       "version": "2.3.0"
     },
