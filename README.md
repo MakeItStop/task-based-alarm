@@ -11,7 +11,7 @@ Members
 * Prashant - https://github.com/prashantmathias
 * Rich - https://github.com/richo225
 
-![iphone_6_both](https://cloud.githubusercontent.com/assets/18379191/18569614/9a2a2eb8-7b9b-11e6-8d6c-79c84ea5d782.png)
+![makeitstop_1](https://cloud.githubusercontent.com/assets/18379191/20644786/f6044aa2-b43a-11e6-9040-90f805484e4a.jpg)
 
 Installation
 ------------
